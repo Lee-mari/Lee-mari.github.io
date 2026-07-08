@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STAGE 1 · 캐릭터 움직이기 · MazeRPG · 마리.log</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="topnav">
+    <a href="index.html" class="brand">마리<span>.log</span></a>
+    <div class="topnav-links"><a href="index.html">← 목록으로</a></div>
+    <a class="topnav-cta" href="https://github.com" target="_blank">GitHub ↗</a>
+  </nav>
+
+  <div class="wrap">
+
+    <!-- 배너 -->
+    <div class="post-banner reveal">
+      <div class="breadcrumb">🎮 포트폴리오 <b>›</b> MazeRPG <b>›</b> <b>Stage 1</b></div>
+      <h1>🚶 캐릭터 움직이기</h1>
+      <p class="mood">MazeRPG 개발일지 · Enhanced Input으로 이동 시스템 구현하기</p>
+    </div>
+
+    <!-- 스테이지 바로가기 -->
+    <div class="ep-strip">
+      <span class="current">STAGE 1 · 이동</span>
+      <span class="locked">STAGE 2 · 무기 콤보 (곧)</span>
+      <span class="locked">STAGE 3 · 몬스터 AI (곧)</span>
+    </div>
+
+    <div class="post-layout">
+
+      <!-- 왼쪽: 프로젝트 이동 -->
+      <aside class="side-nav">
+        <p class="side-nav-title">🎮 MazeRPG</p>
+        <a class="side-nav-item current" href="#">STAGE 1 · 이동 (현재)</a>
+        <p class="side-nav-sub">└ STAGE 2 · 무기 콤보<br>└ STAGE 3 · 몬스터 AI</p>
+        <a class="side-nav-item" href="index.html#explore">📂 전체 카테고리로</a>
+      </aside>
+
+      <!-- 가운데: 실제 글 -->
+      <article class="article-box">
+
+        <!-- 개요 -->
+        <section class="block layout-story reveal" id="overview">
+          <div class="story-icon">🗺️</div>
+          <div>
+            <div class="block-eyebrow"><span class="dot"></span>OVERVIEW</div>
+            <h2>왜 이동부터 만들었나</h2>
+            <p>
+              모든 RPG의 시작은 "캐릭터가 내 손끝에서 움직인다"는 감각이에요.
+              MazeRPG의 첫 스테이지는 미로를 걸어다닐 캐릭터의 <b>이동 · 시점 전환</b> 시스템을 만드는 것이었어요.
+              UE5의 최신 입력 방식인 <code>Enhanced Input System</code>을 기반으로 구현했어요.
+            </p>
+            <div class="tip-bubble"><b>목표 👉</b> WASD로 걷고, 마우스로 카메라를 돌리는 기본 3인칭 이동 완성하기.</div>
+          </div>
+        </section>
+
+        <!-- 입력 설정 -->
+        <section class="block layout-split reveal" id="input">
+          <div>
+            <div class="block-eyebrow"><span class="dot"></span>SETUP</div>
+            <h2>Enhanced Input 설정</h2>
+            <pre><code>// MazeCharacter.h
+UPROPERTY(EditAnywhere, Category="Input")
+UInputMappingContext* DefaultMappingContext;
+
+UPROPERTY(EditAnywhere, Category="Input")
+UInputAction* MoveAction;
+
+UPROPERTY(EditAnywhere, Category="Input")
+UInputAction* LookAction;</code></pre>
+          </div>
+          <ul class="annotation-list">
+            <li><b>IMC (Input Mapping Context)</b> — 키보드/마우스 입력을 "행동"으로 묶어주는 설정 묶음</li>
+            <li><b>IA_Move</b> — WASD 입력값을 2D 벡터로 전달하는 액션</li>
+            <li><b>IA_Look</b> — 마우스 이동값을 받아 카메라 회전에 사용</li>
+          </ul>
+        </section>
+
+        <div class="margin-note reveal"><b>여백 메모 ✏️</b> 기존 Input(Axis Mapping) 대신 Enhanced Input을 쓴 이유는, 나중에 상황별로(예: 전투 중엔 다른 키 배치) 스위칭하기 훨씬 편해서예요.</div>
+
+        <!-- 구현 과정 -->
+        <section class="block reveal" id="implement">
+          <div class="block-eyebrow"><span class="dot"></span>IMPLEMENT</div>
+          <h2>이동 로직, 이렇게 흘러가요</h2>
+          <div class="comic-strip">
+            <div class="frame">
+              <span class="frame-tag">① 입력 감지</span>
+              <code>EnhancedInputComponent<br>-&gt;BindAction(MoveAction, ...)</code>
+            </div>
+            <div class="frame">
+              <span class="frame-tag">② 값 수신</span>
+              <code>Value.Get&lt;FVector2D&gt;()</code>
+            </div>
+            <div class="frame">
+              <span class="frame-tag">③ 방향 계산</span>
+              <code>GetControlRotation()<br>기준으로 Forward/Right 벡터 계산</code>
+            </div>
+            <div class="frame">
+              <span class="frame-tag">④ 이동 적용</span>
+              <code>AddMovementInput<br>(Direction, Value)</code>
+            </div>
+          </div>
+          <pre><code>void AMazeCharacter::Move(const FInputActionValue& Value)
+{
+    const FVector2D MoveInput = Value.Get&lt;FVector2D&gt;();
+
+    const FRotator ControlRot(0, Controller-&gt;GetControlRotation().Yaw, 0);
+    const FVector Forward = FRotationMatrix(ControlRot).GetUnitAxis(EAxis::X);
+    const FVector Right   = FRotationMatrix(ControlRot).GetUnitAxis(EAxis::Y);
+
+    AddMovementInput(Forward, MoveInput.Y);
+    AddMovementInput(Right,   MoveInput.X);
+}</code></pre>
+          <div class="tip-bubble"><b>포인트 👉</b> 카메라가 보는 방향 기준(Yaw)으로 이동 방향을 계산해야, 시점을 돌려도 "앞으로"가 항상 화면 위쪽이 돼요.</div>
+        </section>
+
+        <!-- 카메라 -->
+        <section class="block reveal" id="camera">
+          <div class="block-eyebrow"><span class="dot"></span>CAMERA</div>
+          <h2>카메라는 스프링암으로 붙였어요</h2>
+          <div class="quote-panel">
+            <span class="quote-mark">"</span>
+            <p>카메라를 캐릭터에 딱 붙이면 벽에 부딪힐 때 화면이 벽을 파고들어요. SpringArm을 쓰면 자동으로 거리를 조절해줘요.</p>
+            <pre><code>// 생성자에서
+CameraBoom = CreateDefaultSubobject&lt;USpringArmComponent&gt;("CameraBoom");
+CameraBoom-&gt;SetupAttachment(RootComponent);
+CameraBoom-&gt;TargetArmLength = 400.f;
+CameraBoom-&gt;bUsePawnControlRotation = true;
+
+FollowCamera = CreateDefaultSubobject&lt;UCameraComponent&gt;("FollowCamera");
+FollowCamera-&gt;SetupAttachment(CameraBoom, USpringArmComponent::SocketName);</code></pre>
+          </div>
+        </section>
+
+        <!-- 트러블슈팅 -->
+        <section class="block reveal" id="trouble">
+          <div class="block-eyebrow"><span class="dot"></span>TROUBLESHOOTING</div>
+          <h2>막혔던 부분</h2>
+          <div class="compare">
+            <div class="compare-box bad">
+              <span class="label">❌ 처음엔 이랬어요</span>
+              <p style="margin-top:2px">IMC를 코드에서만 만들고 <code>AddMappingContext</code> 호출을 깜빡해서 입력이 아예 안 먹혔어요.</p>
+            </div>
+            <div class="compare-box good">
+              <span class="label">✅ 이렇게 해결</span>
+              <p style="margin-top:2px"><code>PlayerController-&gt;PossessedBy</code> 시점에 <code>Subsystem-&gt;AddMappingContext()</code>를 호출해서 해결했어요.</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="next-ep reveal">
+          <span class="preview-ribbon">다음 스테이지</span>
+          <h3>STAGE 2 · 무기 전환 콤보 시스템</h3>
+          <p>이동이 끝났으니, 이제 캐릭터가 무기를 들고 휘두를 차례예요!</p>
+        </div>
+
+      </article>
+
+      <!-- 오른쪽: 목차 -->
+      <aside class="toc-detailed">
+        <p class="toc-detailed-title">📖 이 글의 목차</p>
+        <a href="#overview" data-toc><span class="n">01</span> 개요</a>
+        <a href="#input" data-toc><span class="n">02</span> 입력 설정</a>
+        <a href="#implement" data-toc><span class="n">03</span> 이동 로직</a>
+        <a href="#camera" data-toc><span class="n">04</span> 카메라 연동</a>
+        <a href="#trouble" data-toc><span class="n">05</span> 트러블슈팅</a>
+      </aside>
+
+    </div>
+
+    <div class="more-posts">
+      <p class="more-posts-title">📚 MazeRPG 다른 스테이지</p>
+      <div class="ep-strip">
+        <span class="current">STAGE 1 · 이동</span>
+        <span class="locked">STAGE 2 · 무기 콤보 (곧)</span>
+        <span class="locked">STAGE 3 · 몬스터 AI (곧)</span>
+        <a href="index.html">전체 목록 →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>STAGE 1 클리어! 🎉</footer>
+
+  <script>
+    const links = document.querySelectorAll('[data-toc]');
+    const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href')));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = '#' + entry.target.id;
+          links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(s => s && io.observe(s));
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealIO.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealIO.observe(el));
+  </script>
+
+</body>
+</html>

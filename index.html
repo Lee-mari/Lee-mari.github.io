@@ -56,12 +56,69 @@
       </div>
     </div>
 
-    <!-- 오늘의 잡담 스탯 -->
-    <div class="stat-strip reveal">
-      <span class="stat-pill">🔥 <b>3일</b> 연속 정리 중</span>
-      <span class="stat-pill">📝 총 <b>1화</b> 발행</span>
-      <span class="stat-pill">☕ 커피 <b>12잔</b> 소모 (추정)</span>
-      <span class="stat-pill">🐛 오늘 잡은 버그 <b>2마리</b></span>
+    <!-- 스탯창 + 포트폴리오 쇼케이스 -->
+    <div class="showcase-grid reveal">
+
+      <!-- 게임 스탯창 -->
+      <div class="stat-window">
+        <div class="stat-window-head">
+          <div class="stat-window-avatar">🐱</div>
+          <div>
+            <span class="stat-window-name">마리</span>
+            <span class="stat-window-lv">Lv.3 개발자</span>
+          </div>
+        </div>
+        <div class="exp-bar-label"><span>EXP</span><span>다음 레벨까지 32%</span></div>
+        <div class="exp-bar-track"><div class="exp-bar-fill" id="expFill"></div></div>
+
+        <div class="stat-rows">
+          <div class="stat-row"><span class="label">🔥 연속 정리</span><span class="value">3일째</span></div>
+          <div class="stat-row"><span class="label">📝 발행한 회차</span><span class="value">1화</span></div>
+          <div class="stat-row"><span class="label">🐛 오늘 잡은 버그</span><span class="value">2마리</span></div>
+          <div class="stat-row"><span class="label">☕ 카페인 수치</span><span class="value warn">위험 (12잔)</span></div>
+        </div>
+
+        <button class="reroll-btn" onclick="rollFortune()">🎲 오늘의 개발자 운세 뽑기</button>
+        <p class="fortune-text" id="fortuneText"></p>
+      </div>
+
+      <!-- 포트폴리오 프로젝트 -->
+      <div>
+        <p class="portfolio-panel-title">🎮 포트폴리오 프로젝트</p>
+
+        <details class="project-card" open>
+          <summary>
+            <div class="project-cover maze">🗺️</div>
+            <div class="project-info">
+              <h3>MazeRPG</h3>
+              <p>무기 전환 콤보 시스템이 있는 미로 RPG</p>
+              <div class="project-tags"><span>UE 5.3</span><span>C++</span><span>진행중</span></div>
+            </div>
+          </summary>
+          <div class="stage-list">
+            <a class="stage-pill ready" href="mazerpg-stage1.html"><span class="stage-num">STAGE 1</span>캐릭터 움직이기</a>
+            <span class="stage-pill locked"><span class="stage-num">STAGE 2</span>무기 전환 콤보</span>
+            <span class="stage-pill locked"><span class="stage-num">STAGE 3</span>몬스터 AI</span>
+          </div>
+        </details>
+
+        <details class="project-card">
+          <summary>
+            <div class="project-cover fps">🔫</div>
+            <div class="project-info">
+              <h3>SurvivalFPS</h3>
+              <p>C++ 컴포넌트 구조로 만든 나만의 슈팅 게임</p>
+              <div class="project-tags"><span>UE5</span><span>C++</span><span>준비중</span></div>
+            </div>
+          </summary>
+          <div class="stage-list">
+            <span class="stage-pill locked"><span class="stage-num">STAGE 1</span>캐릭터 움직이기</span>
+            <span class="stage-pill locked"><span class="stage-num">STAGE 2</span>무기 시스템</span>
+            <span class="stage-pill locked"><span class="stage-num">STAGE 3</span>Chaos 파괴 연출</span>
+          </div>
+        </details>
+      </div>
+
     </div>
 
     <div class="author-blurb reveal">
@@ -123,29 +180,29 @@
       </div>
 
       <div>
-        <p class="section-title">💡 오늘의 개발 상식</p>
+        <p class="section-title">⌨️ 알아두면 좋은 꿀팁</p>
 
         <div class="trivia-card">
-          <div class="trivia-emoji">🐛</div>
+          <div class="trivia-emoji">🧊</div>
           <div>
-            <p class="trivia-title">"버그"의 유래</p>
-            <p class="trivia-desc">1947년, 진짜 나방 한 마리가 컴퓨터에 끼어서 오류가 났던 게 시작이에요.</p>
+            <p class="trivia-title">언리얼 · 뷰포트 이동</p>
+            <p class="trivia-desc"><code>W A S D</code> + 우클릭 드래그로 자유롭게 시점 이동! 우클릭 누른 채 <code>Q/E</code>는 위아래 이동.</p>
           </div>
         </div>
 
         <div class="trivia-card">
-          <div class="trivia-emoji">🎯</div>
+          <div class="trivia-emoji">🔍</div>
           <div>
-            <p class="trivia-title">무한 루프 별명</p>
-            <p class="trivia-desc">개발자들 사이에선 무한 루프를 "뫼비우스의 코드"라고 부르기도 해요.</p>
+            <p class="trivia-title">에디터 · 빠른 검색</p>
+            <p class="trivia-desc">콘텐츠 브라우저에서 <code>Ctrl + Shift + F</code> 누르면 애셋 이름으로 바로 검색돼요.</p>
           </div>
         </div>
 
         <div class="trivia-card">
-          <div class="trivia-emoji">🕹️</div>
+          <div class="trivia-emoji">🌱</div>
           <div>
-            <p class="trivia-title">언리얼 엔진 이름</p>
-            <p class="trivia-desc">1998년 게임 'Unreal'을 만들다가 탄생한 엔진이 지금의 UE예요.</p>
+            <p class="trivia-title">Git · 되돌리기</p>
+            <p class="trivia-desc">커밋 메시지 오타 냈을 때 <code>git commit --amend</code>로 방금 커밋만 수정 가능!</p>
           </div>
         </div>
       </div>
@@ -167,6 +224,28 @@
     function goSlide(i) { current = i; render(); }
   </script>
 
+
+  <script>
+    // EXP 바 채우기 애니메이션
+    window.addEventListener('load', () => {
+      setTimeout(() => { document.getElementById('expFill').style.width = '68%'; }, 300);
+    });
+
+    // 오늘의 개발자 운세
+    const fortunes = [
+      "오늘은 버그가 스스로 도망갈 운세 🏃",
+      "세미콜론 하나 빼먹지 않는 날! 🍀",
+      "for문 무한루프 조심... 3번 확인하기 👀",
+      "오늘 짠 코드, 내일의 내가 칭찬할 예정 🙌",
+      "커밋 메시지 센스 만렙 찍는 날 ✍️",
+      "디버깅 운세: 콘솔 로그 하나로 바로 해결 🔍",
+      "새로고침 한 번에 다 되는 기적의 날 ✨"
+    ];
+    function rollFortune() {
+      const el = document.getElementById('fortuneText');
+      el.textContent = fortunes[Math.floor(Math.random() * fortunes.length)];
+    }
+  </script>
 
   <script>
     // 스크롤 리빌 애니메이션
