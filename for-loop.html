@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>제1화 · for문 정리 · 마리.log</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="topnav">
+    <a href="index.html" class="brand">마리<span>.log</span></a>
+    <div class="topnav-links"><a href="index.html">← 목록으로</a></div>
+    <a class="topnav-cta" href="https://github.com" target="_blank">GitHub ↗</a>
+  </nav>
+
+  <div class="wrap">
+
+    <!-- 배너 -->
+    <div class="post-banner reveal">
+      <div class="breadcrumb">🎮 언리얼 엔진 <b>›</b> C++ <b>›</b> <b>for문 정리</b></div>
+      <h1>🔁 for문, 이렇게 정리했어요</h1>
+      <p class="mood">오늘의 정신상태: for문은 이제 하나도 안 무서워요 💪</p>
+    </div>
+
+    <!-- 회차 바로가기 -->
+    <div class="ep-strip">
+      <span class="current">제1화 · for문</span>
+      <span class="locked">제2화 · while문 (곧)</span>
+      <span class="locked">제3화 · 포인터 (곧)</span>
+    </div>
+
+    <!-- 3단 레이아웃 -->
+    <div class="post-layout">
+
+      <!-- 왼쪽: 카테고리 이동 -->
+      <aside class="side-nav">
+        <p class="side-nav-title">📂 카테고리</p>
+        <a class="side-nav-item current" href="#">🎮 언리얼 엔진</a>
+        <p class="side-nav-sub">└ C++ (현재)<br>└ 블루프린트</p>
+        <a class="side-nav-item" href="index.html#explore">🎨 웹툰 PD 스터디</a>
+        <a class="side-nav-item" href="index.html#explore">🐙 Git & 협업</a>
+      </aside>
+
+      <!-- 가운데: 실제 글 -->
+      <article class="article-box">
+
+        <!-- 레이아웃 A -->
+        <section class="block layout-story reveal" id="why">
+          <div class="story-icon">🍙</div>
+          <div>
+            <div class="block-eyebrow"><span class="dot"></span>WHY</div>
+            <h2>왜 필요한가?</h2>
+            <p>
+              김밥을 100줄 만다고 생각해보면, "한 줄 말기"를 100번 반복하는 거잖아요.
+              코드도 똑같은 동작을 여러 번 할 때, 매번 똑같이 써주는 대신
+              <code>for문</code> 하나로 "몇 번 반복할지"만 정해주면 돼요.
+            </p>
+            <div class="tip-bubble"><b>정리하면 👉</b> "같은 일을 N번 하고 싶을 때" 쓰는 도구예요.</div>
+          </div>
+        </section>
+
+        <div class="margin-note"><b>여백 메모 ✏️</b> 사실 저도 처음엔 i가 왜 자꾸 나오는지 몰랐어요. "인덱스"의 i 래요.</div>
+
+        <!-- 레이아웃 B -->
+        <section class="block layout-split reveal" id="structure">
+          <div>
+            <div class="block-eyebrow"><span class="dot"></span>STRUCTURE</div>
+            <h2>기본 구조 뜯어보기</h2>
+            <pre><code>for (int i = 0; i &lt; 5; i++)
+{
+    // 이 안의 코드가 5번 반복돼요
+}</code></pre>
+          </div>
+          <ul class="annotation-list">
+            <li><b>① int i = 0</b> — 몇 번째인지 세는 번호표 만들기 (0부터 시작)</li>
+            <li><b>② i &lt; 5</b> — "5보다 작을 때까지만" 계속하라는 조건</li>
+            <li><b>③ i++</b> — 한 바퀴 돌 때마다 번호표 +1</li>
+          </ul>
+        </section>
+
+        <!-- 레이아웃 C -->
+        <section class="block reveal" id="demo">
+          <div class="block-eyebrow"><span class="dot"></span>RUN IT</div>
+          <h2>실제로 돌려보면?</h2>
+          <p>3번 반복하도록 돌리면, 한 바퀴씩 이렇게 진행돼요 (옆으로 밀어서 보기 →)</p>
+          <div class="comic-strip">
+            <div class="frame"><span class="frame-tag">i = 0</span><code>몬스터 0번 소환!</code></div>
+            <div class="frame"><span class="frame-tag">i = 1</span><code>몬스터 1번 소환!</code></div>
+            <div class="frame"><span class="frame-tag">i = 2</span><code>몬스터 2번 소환!</code></div>
+            <div class="frame"><span class="frame-tag">i = 3 → 조건 거짓</span><code>반복 종료 🛑</code></div>
+          </div>
+          <div class="tip-bubble"><b>주의! 👉</b> 0부터 시작해서 3번 도니까 0, 1, 2 까지만 나와요.</div>
+        </section>
+
+        <!-- 레이아웃 D -->
+        <section class="block reveal" id="gamedev">
+          <div class="block-eyebrow"><span class="dot"></span>REAL USE</div>
+          <h2>게임 개발에서는 이렇게 써요</h2>
+          <div class="quote-panel">
+            <span class="quote-mark">"</span>
+            <p>스테이지 매니저가 몬스터 스포너 여러 개를 배치할 때, 하나하나 손으로 다 안 쓰고 이렇게 돌려요.</p>
+            <pre><code>for (int i = 0; i &lt; SpawnerArray.Num(); i++)
+{
+    SpawnerArray[i]-&gt;ActivateSpawner();
+}</code></pre>
+          </div>
+          <div class="tip-bubble"><b>비유하면 👉</b> 던전에 스포너가 10개든 100개든, "다 켜!"라고 한 번에 말하는 느낌이에요.</div>
+        </section>
+
+        <!-- 레이아웃 E -->
+        <section class="block reveal" id="mistakes">
+          <div class="block-eyebrow"><span class="dot"></span>WATCH OUT</div>
+          <h2>자주 하는 실수</h2>
+          <div class="compare">
+            <div class="compare-box bad">
+              <span class="label">❌ 무한 루프</span>
+              <code>for (int i = 0; i &gt; -1; i++)</code>
+              <p style="margin-top:6px">조건이 절대 거짓이 안 돼서 영원히 반복 😱</p>
+            </div>
+            <div class="compare-box good">
+              <span class="label">✅ 안전한 조건</span>
+              <code>for (int i = 0; i &lt; 5; i++)</code>
+              <p style="margin-top:6px">5번 돌면 조건이 거짓이 되어 멈춤 👍</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="next-ep reveal">
+          <span class="preview-ribbon">다음화 예고</span>
+          <h3>제 2화 · while문 정리</h3>
+          <p>"몇 번 돌지 모를 때"는 어떻게 반복할까? 다음 컷에서 계속!</p>
+        </div>
+
+      </article>
+
+      <!-- 오른쪽: 상세 목차 -->
+      <aside class="toc-detailed">
+        <p class="toc-detailed-title">📖 이 화의 목차</p>
+        <a href="#why" data-toc><span class="n">01</span> 왜 필요해?</a>
+        <a href="#structure" data-toc><span class="n">02</span> 구조 뜯어보기</a>
+        <a href="#demo" data-toc><span class="n">03</span> 실행 결과</a>
+        <a href="#gamedev" data-toc><span class="n">04</span> 게임 개발 실전</a>
+        <a href="#mistakes" data-toc><span class="n">05</span> 자주하는 실수</a>
+      </aside>
+
+    </div>
+
+    <!-- 하단 글 목록 -->
+    <div class="more-posts">
+      <p class="more-posts-title">📚 다른 회차도 보기</p>
+      <div class="ep-strip">
+        <span class="current">제1화 · for문</span>
+        <span class="locked">제2화 · while문 (곧)</span>
+        <span class="locked">제3화 · 포인터 (곧)</span>
+        <a href="index.html">전체 목록 →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>1화 클리어! 🎉</footer>
+
+  <script>
+    const links = document.querySelectorAll('[data-toc]');
+    const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href')));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = '#' + entry.target.id;
+          links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(s => s && io.observe(s));
+  </script>
+
+
+  <script>
+    // 스크롤 리빌 애니메이션
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealIO.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealIO.observe(el));
+
+    // 마우스 반짝이 트레일
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion) {
+      const sparkles = ['✨','💫','⭐','🩷'];
+      let lastTime = 0;
+      window.addEventListener('mousemove', (e) => {
+        const now = Date.now();
+        if (now - lastTime < 90) return;
+        lastTime = now;
+        const el = document.createElement('span');
+        el.className = 'sparkle';
+        el.textContent = sparkles[Math.floor(Math.random()*sparkles.length)];
+        el.style.left = e.clientX + 'px';
+        el.style.top = e.clientY + 'px';
+        el.style.setProperty('--tx', (Math.random()*20-10) + 'px');
+        el.style.setProperty('--ty', (Math.random()*10+14) + 'px');
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 700);
+      });
+    }
+  </script>
+</body>
+</html>

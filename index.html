@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>마리의 코딩 포폴 놀이터</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="topnav">
+    <div class="brand">마리<span>.log</span></div>
+    <div class="topnav-links">
+      <a href="index.html" class="active">홈</a>
+      <a href="#explore">카테고리</a>
+    </div>
+    <a class="topnav-cta" href="https://github.com" target="_blank">GitHub ↗</a>
+  </nav>
+
+  <div class="wrap">
+
+    <!-- 히어로 캐러셀 -->
+    <div class="carousel">
+      <div class="slides">
+        <div class="slide s1 active">
+          <span class="slide-tag">#언리얼엔진</span>
+          <div class="slide-body">
+            <h3>레벨 디자이너로 참여 중!</h3>
+            <p>팀 프로젝트에서 몬스터 스포너 & 던전 트리거를 배치하고 있어요.</p>
+          </div>
+          <div class="slide-emoji">🎮</div>
+        </div>
+        <div class="slide s2">
+          <span class="slide-tag">#C++공부</span>
+          <div class="slide-body">
+            <h3>반복문, 포인터... 하나씩 정복 중</h3>
+            <p>배운 개념을 웹툰 회차처럼 하나씩 기록하고 있어요.</p>
+          </div>
+          <div class="slide-emoji">💻</div>
+        </div>
+        <div class="slide s3">
+          <span class="slide-tag">#웹툰PD</span>
+          <div class="slide-body">
+            <h3>개발자 + 웹툰 PD, 두 마리 토끼</h3>
+            <p>게임 개발과 웹툰 스토리텔링, 둘 다 놓치지 않을 거예요.</p>
+          </div>
+          <div class="slide-emoji">🐰</div>
+        </div>
+      </div>
+      <button class="carousel-arrow prev" onclick="moveSlide(-1)">‹</button>
+      <button class="carousel-arrow next" onclick="moveSlide(1)">›</button>
+      <div class="dots">
+        <span class="dot active" onclick="goSlide(0)"></span>
+        <span class="dot" onclick="goSlide(1)"></span>
+        <span class="dot" onclick="goSlide(2)"></span>
+      </div>
+    </div>
+
+    <!-- 오늘의 잡담 스탯 -->
+    <div class="stat-strip reveal">
+      <span class="stat-pill">🔥 <b>3일</b> 연속 정리 중</span>
+      <span class="stat-pill">📝 총 <b>1화</b> 발행</span>
+      <span class="stat-pill">☕ 커피 <b>12잔</b> 소모 (추정)</span>
+      <span class="stat-pill">🐛 오늘 잡은 버그 <b>2마리</b></span>
+    </div>
+
+    <div class="author-blurb reveal">
+      <b>마리 왈 👀</b> — 사실 이 블로그도 오늘 막 만들었어요. 언리얼도 배우고 블로그도 만들고... 저 지금 두 배로 성장 중인 거 맞죠?
+    </div>
+
+    <!-- 카테고리 탐색 + 개발상식 -->
+    <div class="explore-grid reveal" id="explore">
+
+      <div>
+        <p class="section-title">📂 카테고리로 둘러보기</p>
+
+        <details class="cat-main" open>
+          <summary>🎮 언리얼 엔진 <span class="count">2개 세부분류</span></summary>
+          <div class="subcats">
+            <details class="cat-sub" open>
+              <summary>C++</summary>
+              <div class="post-chips">
+                <a class="post-chip ready" href="for-loop.html">for문 정리</a>
+                <span class="post-chip locked">포인터란?</span>
+                <span class="post-chip locked">클래스 기초</span>
+              </div>
+            </details>
+            <details class="cat-sub">
+              <summary>블루프린트</summary>
+              <div class="post-chips">
+                <span class="post-chip locked">Branch 노드</span>
+                <span class="post-chip locked">Timeline 활용</span>
+              </div>
+            </details>
+          </div>
+        </details>
+
+        <details class="cat-main">
+          <summary>🎨 웹툰 PD 스터디 <span class="count">1개 세부분류</span></summary>
+          <div class="subcats">
+            <details class="cat-sub">
+              <summary>작품 분석</summary>
+              <div class="post-chips">
+                <span class="post-chip locked">스토리 구조 분석</span>
+                <span class="post-chip locked">독자 반응 분석</span>
+              </div>
+            </details>
+          </div>
+        </details>
+
+        <details class="cat-main">
+          <summary>🐙 Git & 협업 <span class="count">1개 세부분류</span></summary>
+          <div class="subcats">
+            <details class="cat-sub">
+              <summary>Git 기초</summary>
+              <div class="post-chips">
+                <span class="post-chip locked">커밋 메시지 잘 쓰기</span>
+                <span class="post-chip locked">브랜치 충돌 해결</span>
+              </div>
+            </details>
+          </div>
+        </details>
+      </div>
+
+      <div>
+        <p class="section-title">💡 오늘의 개발 상식</p>
+
+        <div class="trivia-card">
+          <div class="trivia-emoji">🐛</div>
+          <div>
+            <p class="trivia-title">"버그"의 유래</p>
+            <p class="trivia-desc">1947년, 진짜 나방 한 마리가 컴퓨터에 끼어서 오류가 났던 게 시작이에요.</p>
+          </div>
+        </div>
+
+        <div class="trivia-card">
+          <div class="trivia-emoji">🎯</div>
+          <div>
+            <p class="trivia-title">무한 루프 별명</p>
+            <p class="trivia-desc">개발자들 사이에선 무한 루프를 "뫼비우스의 코드"라고 부르기도 해요.</p>
+          </div>
+        </div>
+
+        <div class="trivia-card">
+          <div class="trivia-emoji">🕹️</div>
+          <div>
+            <p class="trivia-title">언리얼 엔진 이름</p>
+            <p class="trivia-desc">1998년 게임 'Unreal'을 만들다가 탄생한 엔진이 지금의 UE예요.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer>made with 🩷 by 마리 · 매일 한 컷씩 쌓는 중</footer>
+
+  <script>
+    let current = 0;
+    const total = 3;
+    function render() {
+      document.querySelectorAll('.slide').forEach((s,i)=>s.classList.toggle('active', i===current));
+      document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active', i===current));
+    }
+    function moveSlide(dir) { current = (current + dir + total) % total; render(); }
+    function goSlide(i) { current = i; render(); }
+  </script>
+
+
+  <script>
+    // 스크롤 리빌 애니메이션
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealIO.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealIO.observe(el));
+
+    // 마우스 반짝이 트레일
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion) {
+      const sparkles = ['✨','💫','⭐','🩷'];
+      let lastTime = 0;
+      window.addEventListener('mousemove', (e) => {
+        const now = Date.now();
+        if (now - lastTime < 90) return;
+        lastTime = now;
+        const el = document.createElement('span');
+        el.className = 'sparkle';
+        el.textContent = sparkles[Math.floor(Math.random()*sparkles.length)];
+        el.style.left = e.clientX + 'px';
+        el.style.top = e.clientY + 'px';
+        el.style.setProperty('--tx', (Math.random()*20-10) + 'px');
+        el.style.setProperty('--ty', (Math.random()*10+14) + 'px');
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 700);
+      });
+    }
+  </script>
+</body>
+</html>
