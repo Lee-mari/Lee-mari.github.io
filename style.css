@@ -601,7 +601,75 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; margin-top
   display: flex; flex-direction: column; align-items: center; gap: 8px; font-family: 'Jua', sans-serif;
 }
 
-/* 첨부 이미지 카드 */
+/* =========================================================
+   변수 글 전용 컴포넌트
+   ========================================================= */
+
+/* 박스 뒤집기 인터랙티브 데모 (사진 대신 애니메이션) */
+.box-reveal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 16px; margin: 20px 0; }
+.box-reveal-card { perspective: 800px; height: 100px; cursor: pointer; }
+.box-reveal-inner {
+  position: relative; width: 100%; height: 100%; text-align: center;
+  transition: transform 0.6s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d;
+}
+.box-reveal-card:hover .box-reveal-inner { transform: rotateY(180deg); }
+.box-reveal-front, .box-reveal-back {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border-radius: 14px; border: 2.5px solid var(--ink); backface-visibility: hidden; box-shadow: 4px 4px 0 var(--shadow);
+}
+.box-reveal-front { background: var(--card); }
+.box-reveal-front .var-name { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 15px; }
+.box-reveal-front .var-hint { font-size: 11px; color: var(--ink-soft); margin-top: 4px; }
+.box-reveal-back { background: var(--mint); color: #fff; transform: rotateY(180deg); }
+.box-reveal-back .var-val { font-family: 'Jua', sans-serif; font-size: 16px; }
+.box-reveal-hint-row { text-align: center; font-size: 12px; color: var(--ink-soft); margin-top: -8px; margin-bottom: 8px; }
+
+/* 선언 다이어그램 (type → name → 빈 상자) */
+.decl-diagram { display: flex; flex-direction: column; align-items: center; gap: 16px; margin: 20px 0; }
+.decl-row { display: flex; align-items: center; gap: 14px; }
+.decl-box { padding: 14px 22px; border: 2.5px solid var(--ink); border-radius: 12px; text-align: center; box-shadow: 4px 4px 0 var(--shadow); }
+.decl-box.type-box { background: #FFE3AE; }
+.decl-box.name-box { background: #B9E9EA; }
+.decl-box .d-main { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 17px; }
+.decl-box .d-sub { font-size: 11.5px; color: var(--ink-soft); margin-top: 4px; }
+.decl-arrow { font-size: 20px; color: var(--ink-soft); }
+.decl-empty-box {
+  border: 2.5px dashed var(--ink); border-radius: 14px; padding: 16px 30px; text-align: center;
+  background: #FAF6EF; font-family: 'JetBrains Mono', monospace;
+}
+.decl-empty-box .d-main { font-size: 16px; font-weight: 700; }
+.decl-empty-box .d-sub { font-size: 11.5px; color: var(--ink-soft); margin-top: 6px; }
+
+/* 초기화 2단계 다이어그램 */
+.init-stage-label { font-family: 'Jua', sans-serif; font-size: 13px; color: var(--ink-soft); margin: 14px 0 8px; }
+.init-boxes { display: flex; gap: 14px; flex-wrap: wrap; }
+.init-box { flex: 1; min-width: 100px; padding: 14px; border-radius: 12px; text-align: center; }
+.init-box.empty { border: 2.5px dashed var(--ink); background: #FAF6EF; }
+.init-box.filled { border: 2.5px solid var(--ink); box-shadow: 3px 3px 0 var(--shadow); }
+.init-box.filled.age { background: #FFD2DA; }
+.init-box.filled.height { background: #CDF3E4; }
+.init-box .i-name { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 14px; }
+.init-box .i-val { font-family: 'Jua', sans-serif; font-size: 15px; margin-top: 4px; }
+.init-box .i-empty { font-size: 11px; color: var(--ink-soft); margin-top: 4px; }
+
+/* 번호 붙은 스텝 카드 */
+.numbered-steps { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+.numbered-step { display: flex; gap: 14px; background: var(--card); border: 2.5px solid var(--ink); border-radius: 14px; padding: 14px 16px; box-shadow: 3px 3px 0 var(--shadow); }
+.numbered-step .step-num {
+  flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--grape); color: #fff;
+  display: flex; align-items: center; justify-content: center; font-family: 'Jua', sans-serif; font-size: 13px;
+}
+.numbered-step .step-body b { font-family: 'Jua', sans-serif; font-size: 14px; }
+.numbered-step .step-body p { margin: 4px 0 0; font-size: 13px; color: var(--ink-soft); }
+
+/* 가짜 콘솔 결과 목업 */
+.console-mock { background: #2E2438; border: 3px solid var(--ink); border-radius: 14px; overflow: hidden; box-shadow: 5px 5px 0 var(--shadow); margin: 16px 0; }
+.console-mock-bar { display: flex; gap: 6px; padding: 10px 14px; background: #241D30; }
+.console-mock-bar span { width: 10px; height: 10px; border-radius: 50%; }
+.console-mock-bar span:nth-child(1) { background: #FF6F91; }
+.console-mock-bar span:nth-child(2) { background: #FFD23F; }
+.console-mock-bar span:nth-child(3) { background: #38C793; }
+.console-mock-body { padding: 16px 18px; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #F4EFFF; }
 .figure {
   border: 3px solid var(--ink); border-radius: 16px; overflow: hidden;
   box-shadow: 5px 5px 0 var(--shadow); margin: 18px 0; background: #fff; padding: 10px;

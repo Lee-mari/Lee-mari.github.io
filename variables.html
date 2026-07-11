@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>마리의 코딩 포폴 놀이터</title>
+<title>변수 · 마리.log</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&family=JetBrains+Mono:wght@400;600&display=swap');
 
@@ -777,280 +777,284 @@ a, button, summary, .toc a, .episode-row, .dot, .carousel-arrow {
 <body>
 
   <nav class="topnav">
-    <div class="brand">마리<span>.log</span></div>
-    <div class="topnav-links">
-      <a href="index.html" class="active">홈</a>
-      <a href="#explore">카테고리</a>
-    </div>
+    <a href="index.html" class="brand">마리<span>.log</span></a>
+    <div class="topnav-links"><a href="index.html">← 목록으로</a></div>
     <a class="topnav-cta" href="https://github.com" target="_blank">GitHub ↗</a>
   </nav>
 
   <div class="wrap">
 
-    <!-- 히어로 캐러셀 -->
-    <div class="carousel">
-      <div class="slides">
-        <div class="slide s1 active">
-          <span class="slide-tag">#언리얼엔진</span>
-          <div class="slide-body">
-            <h3>레벨 디자이너로 참여 중!</h3>
-            <p>팀 프로젝트에서 몬스터 스포너 & 던전 트리거를 배치하고 있어요.</p>
-          </div>
-          <div class="slide-emoji">🎮</div>
-        </div>
-        <div class="slide s2">
-          <span class="slide-tag">#C++공부</span>
-          <div class="slide-body">
-            <h3>반복문, 포인터... 하나씩 정복 중</h3>
-            <p>배운 개념을 웹툰 회차처럼 하나씩 기록하고 있어요.</p>
-          </div>
-          <div class="slide-emoji">💻</div>
-        </div>
-        <div class="slide s3">
-          <span class="slide-tag">#웹툰PD</span>
-          <div class="slide-body">
-            <h3>개발자 + 웹툰 PD, 두 마리 토끼</h3>
-            <p>게임 개발과 웹툰 스토리텔링, 둘 다 놓치지 않을 거예요.</p>
-          </div>
-          <div class="slide-emoji">🐰</div>
-        </div>
-      </div>
-      <button class="carousel-arrow prev" onclick="moveSlide(-1)">‹</button>
-      <button class="carousel-arrow next" onclick="moveSlide(1)">›</button>
-      <div class="dots">
-        <span class="dot active" onclick="goSlide(0)"></span>
-        <span class="dot" onclick="goSlide(1)"></span>
-        <span class="dot" onclick="goSlide(2)"></span>
-      </div>
+    <div class="post-banner post-banner-alt reveal">
+      <div class="breadcrumb">🎮 언리얼 엔진 <b>›</b> C <b>›</b> <b>변수</b></div>
+      <h1>🏷️ 변수(Variable)</h1>
+      <p class="mood">오늘의 정신상태: 상자마다 이름표를 붙였더니 정리가 된다 🏷️</p>
     </div>
 
-    <!-- 스탯창 + 포트폴리오 쇼케이스 -->
-    <div class="showcase-grid reveal">
+    <div class="ep-strip">
+      <a href="c-basic-structure.html">1편 · 기본 구조</a>
+      <a href="data-types.html">2편 · 데이터와 자료형</a>
+      <span class="current">3편 · 변수</span>
+    </div>
 
-      <!-- 게임 스탯창 -->
-      <div class="stat-window">
-        <div class="stat-window-head">
-          <div class="stat-window-avatar">🐱</div>
-          <div>
-            <span class="stat-window-name">마리</span>
-            <span class="stat-window-lv">Lv.3 개발자</span>
-          </div>
-        </div>
-        <div class="exp-bar-label"><span>EXP</span><span>다음 레벨까지 32%</span></div>
-        <div class="exp-bar-track"><div class="exp-bar-fill" id="expFill"></div></div>
+    <div class="post-layout">
 
-        <div class="stat-rows">
-          <div class="stat-row"><span class="label">🔥 연속 정리</span><span class="value">3일째</span></div>
-          <div class="stat-row"><span class="label">📝 발행한 회차</span><span class="value">1화</span></div>
-          <div class="stat-row"><span class="label">🐛 오늘 잡은 버그</span><span class="value">2마리</span></div>
-          <div class="stat-row"><span class="label">☕ 카페인 수치</span><span class="value warn">위험 (12잔)</span></div>
-        </div>
+      <aside class="side-nav">
+        <p class="side-nav-title">📂 카테고리</p>
+        <a class="side-nav-item current" href="category-c.html">🎮 언리얼 엔진</a>
+        <p class="side-nav-sub">
+          └ <a href="category-cpp.html" style="color:inherit;">C++</a><br>
+          └ <a href="category-c.html" style="color:inherit;">C (현재)</a><br>
+          └ 블루프린트
+        </p>
+        <a class="side-nav-item" href="index.html#explore">🎨 웹툰 PD 스터디</a>
+        <a class="side-nav-item" href="index.html#explore">🐙 Git & 협업</a>
+      </aside>
 
-        <button class="reroll-btn" onclick="rollFortune()">🎲 오늘의 개발자 운세 뽑기</button>
-        <p class="fortune-text" id="fortuneText"></p>
-      </div>
+      <article class="article-box">
 
-      <!-- 포트폴리오 프로젝트 -->
-      <div>
-        <p class="portfolio-panel-title">🎮 포트폴리오 프로젝트</p>
+        <section class="block reveal" id="intro">
+          <div class="block-eyebrow"><span class="dot"></span>VARIABLE</div>
+          <h2>변수(Variable)란?</h2>
+          <p><b>데이터를 저장할 수 있는 메모리 공간</b>이다.</p>
+          <ul class="annotation-list">
+            <li>변수는 <b>이름표가 붙은 상자</b>라고 생각하면 된다.</li>
+            <li>이 상자 안에 값을 넣고, 필요할 때 값을 꺼내서 사용할 수 있다.</li>
+          </ul>
 
-        <details class="project-card" open>
-          <summary>
-            <div class="project-cover maze">🗺️</div>
-            <div class="project-info">
-              <h3>MazeRPG</h3>
-              <p>무기 전환 콤보 시스템이 있는 미로 RPG</p>
-              <div class="project-tags"><span>UE 5.3</span><span>C++</span><span>진행중</span></div>
+          <p style="margin-top:16px; font-size:13px; color:var(--ink-soft);">상자를 눌러보면 안에 든 값이 뒤집히면서 나타난다. 👇</p>
+          <div class="box-reveal-grid">
+            <div class="box-reveal-card">
+              <div class="box-reveal-inner">
+                <div class="box-reveal-front"><div class="var-name">name</div><div class="var-hint">눌러보기</div></div>
+                <div class="box-reveal-back"><div class="var-val">"마리"</div></div>
+              </div>
             </div>
-          </summary>
-          <div class="stage-list">
-            <a class="stage-pill ready" href="mazerpg-stage1.html"><span class="stage-num">STAGE 1</span>캐릭터 움직이기</a>
-            <span class="stage-pill locked"><span class="stage-num">STAGE 2</span>무기 전환 콤보</span>
-            <span class="stage-pill locked"><span class="stage-num">STAGE 3</span>몬스터 AI</span>
-          </div>
-        </details>
-
-        <details class="project-card">
-          <summary>
-            <div class="project-cover fps">🔫</div>
-            <div class="project-info">
-              <h3>SurvivalFPS</h3>
-              <p>C++ 컴포넌트 구조로 만든 나만의 슈팅 게임</p>
-              <div class="project-tags"><span>UE5</span><span>C++</span><span>준비중</span></div>
+            <div class="box-reveal-card">
+              <div class="box-reveal-inner">
+                <div class="box-reveal-front"><div class="var-name">catName</div><div class="var-hint">눌러보기</div></div>
+                <div class="box-reveal-back"><div class="var-val">"코코"</div></div>
+              </div>
             </div>
-          </summary>
-          <div class="stage-list">
-            <span class="stage-pill locked"><span class="stage-num">STAGE 1</span>캐릭터 움직이기</span>
-            <span class="stage-pill locked"><span class="stage-num">STAGE 2</span>무기 시스템</span>
-            <span class="stage-pill locked"><span class="stage-num">STAGE 3</span>Chaos 파괴 연출</span>
+            <div class="box-reveal-card">
+              <div class="box-reveal-inner">
+                <div class="box-reveal-front"><div class="var-name">age</div><div class="var-hint">눌러보기</div></div>
+                <div class="box-reveal-back"><div class="var-val">3</div></div>
+              </div>
+            </div>
           </div>
-        </details>
-      </div>
+          <div class="box-reveal-hint-row">(마우스를 올리면 상자가 뒤집히며 안의 값이 보인다)</div>
+        </section>
+
+        <!-- 변수 선언 -->
+        <section class="block reveal" id="declare">
+          <div class="block-eyebrow"><span class="dot"></span>DECLARE</div>
+          <h2>1. 변수 선언</h2>
+          <p>변수를 선언하면, 그 이름으로 데이터를 저장할 공간을 만드는 것이다.</p>
+
+          <pre><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int age;   // 정수를 담을 상자를 만든다
+
+    return 0;
+}</code></pre>
+
+          <div class="decl-diagram">
+            <div class="decl-row">
+              <div class="decl-box type-box"><div class="d-main">int</div><div class="d-sub">정수를 담을 수 있는 타입</div></div>
+              <span class="decl-arrow">➜</span>
+              <div class="decl-box name-box"><div class="d-main">age</div><div class="d-sub">상자의 이름</div></div>
+            </div>
+            <div class="decl-empty-box">
+              <div class="d-main">int age;</div>
+              <div class="d-sub">비어있는 정수 상자 (아직 값이 들어있지 않음)</div>
+            </div>
+          </div>
+
+          <div class="numbered-steps">
+            <div class="numbered-step">
+              <div class="step-num">1</div>
+              <div class="step-body"><b>타입 선택 (int)</b><p>어떤 종류의 데이터를 담을 상자를 만들지 결정한다. int는 정수를 담을 수 있는 상자를 의미한다.</p></div>
+            </div>
+            <div class="numbered-step">
+              <div class="step-num">2</div>
+              <div class="step-body"><b>변수명 지정 (age)</b><p>상자에 이름을 붙인다. 나중에 이 이름으로 상자를 찾을 수 있다.</p></div>
+            </div>
+            <div class="numbered-step">
+              <div class="step-num">3</div>
+              <div class="step-body"><b>선언 완료 (int age;)</b><p>세미콜론(;)으로 선언을 완료한다. 이제 정수를 담을 수 있는 'age'라는 이름의 빈 상자가 만들어졌다.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 초기화 -->
+        <section class="block reveal" id="init">
+          <div class="block-eyebrow"><span class="dot"></span>INITIALIZE</div>
+          <h2>2. 초기화</h2>
+          <p>변수에 지정한 값을 저장하는 것이다. 변수에 값을 넣는 것을 <b>"값을 할당한다"</b>고 한다.</p>
+
+          <p class="init-stage-label">1단계: 빈 상자 만들기 (선언)</p>
+          <div class="init-boxes">
+            <div class="init-box empty"><div class="i-name">age</div><div class="i-empty">(비어있음)</div></div>
+            <div class="init-box empty"><div class="i-name">height</div><div class="i-empty">(비어있음)</div></div>
+          </div>
+
+          <p class="init-stage-label">2단계: 상자에 값 넣기 (초기화)</p>
+          <div class="init-boxes">
+            <div class="init-box filled age"><div class="i-name">age</div><div class="i-val">10</div></div>
+            <div class="init-box filled height"><div class="i-name">height</div><div class="i-val">156.7</div></div>
+          </div>
+
+          <pre style="margin-top:16px"><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int age;         // 나이라는 상자를 만든다
+    float height;    // 키라는 상자를 만든다
+
+    age = 10;        // 나이라는 상자에 10을 넣었다
+    height = 156.7;  // 키라는 상자에 156.7을 넣었다
+
+    return 0;
+}</code></pre>
+        </section>
+
+        <!-- 선언+초기화 -->
+        <section class="block reveal" id="combo">
+          <div class="block-eyebrow"><span class="dot"></span>COMBO</div>
+          <h2>3. 선언과 동시에 초기화</h2>
+          <p>변수를 선언함과 동시에 초기화를 할 수 있다.</p>
+          <pre><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int age = 10;
+    return 0;
+}</code></pre>
+        </section>
+
+        <div class="margin-note reveal"><b>여백 메모 ✏️</b> "선언"은 상자를 만드는 것, "초기화"는 그 상자에 처음 값을 채우는 것이다. 두 동작을 한 줄로 합친 것이 "선언과 동시에 초기화"이다.</div>
+
+        <!-- 장점 -->
+        <section class="block reveal" id="why-init">
+          <div class="block-eyebrow"><span class="dot"></span>WHY</div>
+          <h2>3-1. 선언과 동시에 초기화하면 좋은 점</h2>
+
+          <h3 style="font-family:'Jua',sans-serif; font-size:15px; margin-top:20px;">1️⃣ 쓰레기 값이 들어가는 것을 방지할 수 있다</h3>
+          <p>변수를 선언만 하고 초기화하지 않으면, 컴퓨터 메모리에 남아있는 이상한 값(쓰레기 값)이 들어갈 수도 있다.</p>
+          <pre><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int age;  // 초기화 안 함
+    printf("나이: %d\n", age);  // 쓰레기 값이 출력될 가능성 있음!
+    return 0;
+}</code></pre>
+
+          <h3 style="font-family:'Jua',sans-serif; font-size:15px; margin-top:24px;">2️⃣ 코드가 더 예측 가능해지고, 오류를 줄일 수 있다</h3>
+          <p>초기화하지 않은 변수를 사용하면, 값이 정해져 있지 않아서 프로그램이 엉뚱한 동작을 할 수 있다.</p>
+          <pre><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int num;      // 초기화 안 함!
+    num += 5;     // 원래 값이 뭔지 모른 상태에서 5를 더함
+    printf("%d\n", num);  // 예상하지 못한 결과가 나올 수 있음!
+    return 0;
+}</code></pre>
+
+          <h3 style="font-family:'Jua',sans-serif; font-size:15px; margin-top:24px;">3️⃣ 코드가 간결하고 가독성이 좋아진다</h3>
+          <p>한 줄에 선언과 초기화를 같이 하면, 코드를 더 짧고 읽기 쉽게 만들 수 있다.</p>
+          <div class="compare">
+            <div class="compare-box bad">
+              <span class="label">📌 비효율적인 코드</span>
+              <pre style="margin:8px 0 0; box-shadow:none;"><code>int a;
+a = 10;</code></pre>
+            </div>
+            <div class="compare-box good">
+              <span class="label">📌 좋은 코드</span>
+              <pre style="margin:8px 0 0; box-shadow:none;"><code>int a = 10;</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- 값 사용하기 -->
+        <section class="block reveal" id="use">
+          <div class="block-eyebrow"><span class="dot"></span>USE</div>
+          <h2>4. 변수의 값 사용하기</h2>
+          <p>변수에 저장된 값을 꺼내서 사용할 수 있다.</p>
+          <pre><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int age = 10;
+    float height = 179.8;
+
+    printf("내 나이는 %d 살이고, 키는 %.1f 이다.\n", age, height);
+    return 0;
+}</code></pre>
+
+          <p style="margin-top:16px; font-size:13px; color:var(--ink-soft);">== 결과 ==</p>
+          <div class="console-mock">
+            <div class="console-mock-bar"><span></span><span></span><span></span></div>
+            <div class="console-mock-body">내 나이는 10 살이고, 키는 179.8 이다.</div>
+          </div>
+        </section>
+
+        <a class="next-ep reveal" href="category-c.html">
+          <span class="preview-ribbon">다음화 예고</span>
+          <h3>연산자</h3>
+          <p>상자 안의 값끼리 더하고 빼고 비교하려면 어떻게 해야 할까? 다음 글에서 이어진다.</p>
+        </a>
+
+      </article>
+
+      <aside class="toc-detailed">
+        <p class="toc-detailed-title">📖 이 글의 목차</p>
+        <a href="#intro" data-toc><span class="n">00</span> 변수란</a>
+        <a href="#declare" data-toc><span class="n">01</span> 변수 선언</a>
+        <a href="#init" data-toc><span class="n">02</span> 초기화</a>
+        <a href="#combo" data-toc><span class="n">03</span> 선언+초기화</a>
+        <a href="#why-init" data-toc><span class="n">04</span> 좋은 점</a>
+        <a href="#use" data-toc><span class="n">05</span> 값 사용하기</a>
+      </aside>
 
     </div>
 
-    <div class="author-blurb reveal">
-      <b>마리 왈 👀</b> — 사실 이 블로그도 오늘 막 만들었어요. 언리얼도 배우고 블로그도 만들고... 저 지금 두 배로 성장 중인 거 맞죠?
-    </div>
-
-    <!-- 카테고리 탐색 + 개발상식 -->
-    <div class="explore-grid reveal" id="explore">
-
-      <div>
-        <p class="section-title">📂 카테고리로 둘러보기</p>
-
-        <details class="cat-main" open>
-          <summary>🎮 언리얼 엔진 <span class="count">3개 세부분류</span></summary>
-          <div class="subcats">
-            <details class="cat-sub" open>
-              <summary><a href="category-cpp.html" style="color:inherit;text-decoration:none;">C++</a></summary>
-              <div class="post-chips">
-                <a class="post-chip ready" href="for-loop.html">for문 정리</a>
-                <span class="post-chip locked">포인터란?</span>
-                <span class="post-chip locked">클래스 기초</span>
-              </div>
-            </details>
-            <details class="cat-sub" open>
-              <summary><a href="category-c.html" style="color:inherit;text-decoration:none;">C</a></summary>
-              <div class="post-chips">
-                <a class="post-chip ready" href="c-basic-structure.html">C언어의 기본 구조</a>
-                <a class="post-chip ready" href="data-types.html">데이터와 자료형</a>
-                <a class="post-chip ready" href="variables.html">변수</a>
-              </div>
-            </details>
-            <details class="cat-sub">
-              <summary>블루프린트</summary>
-              <div class="post-chips">
-                <span class="post-chip locked">Branch 노드</span>
-                <span class="post-chip locked">Timeline 활용</span>
-              </div>
-            </details>
-          </div>
-        </details>
-
-        <details class="cat-main">
-          <summary>🎨 웹툰 PD 스터디 <span class="count">1개 세부분류</span></summary>
-          <div class="subcats">
-            <details class="cat-sub">
-              <summary>작품 분석</summary>
-              <div class="post-chips">
-                <span class="post-chip locked">스토리 구조 분석</span>
-                <span class="post-chip locked">독자 반응 분석</span>
-              </div>
-            </details>
-          </div>
-        </details>
-
-        <details class="cat-main">
-          <summary>🐙 Git & 협업 <span class="count">1개 세부분류</span></summary>
-          <div class="subcats">
-            <details class="cat-sub">
-              <summary>Git 기초</summary>
-              <div class="post-chips">
-                <span class="post-chip locked">커밋 메시지 잘 쓰기</span>
-                <span class="post-chip locked">브랜치 충돌 해결</span>
-              </div>
-            </details>
-          </div>
-        </details>
+    <div class="more-posts">
+      <p class="more-posts-title">📚 C 기초 다른 글</p>
+      <div class="ep-strip">
+        <a href="c-basic-structure.html">1편 · 기본 구조</a>
+        <a href="data-types.html">2편 · 데이터와 자료형</a>
+        <span class="current">3편 · 변수</span>
+        <a href="index.html">전체 목록 →</a>
       </div>
-
-      <div>
-        <p class="section-title">⌨️ 알아두면 좋은 꿀팁</p>
-
-        <div class="trivia-card">
-          <div class="trivia-emoji">🧊</div>
-          <div>
-            <p class="trivia-title">언리얼 · 뷰포트 이동</p>
-            <p class="trivia-desc"><code>W A S D</code> + 우클릭 드래그로 자유롭게 시점 이동! 우클릭 누른 채 <code>Q/E</code>는 위아래 이동.</p>
-          </div>
-        </div>
-
-        <div class="trivia-card">
-          <div class="trivia-emoji">🔍</div>
-          <div>
-            <p class="trivia-title">에디터 · 빠른 검색</p>
-            <p class="trivia-desc">콘텐츠 브라우저에서 <code>Ctrl + Shift + F</code> 누르면 애셋 이름으로 바로 검색돼요.</p>
-          </div>
-        </div>
-
-        <div class="trivia-card">
-          <div class="trivia-emoji">🌱</div>
-          <div>
-            <p class="trivia-title">Git · 되돌리기</p>
-            <p class="trivia-desc">커밋 메시지 오타 냈을 때 <code>git commit --amend</code>로 방금 커밋만 수정 가능!</p>
-          </div>
-        </div>
-      </div>
-
     </div>
 
   </div>
 
-  <footer>made with 🩷 by 마리 · 매일 한 컷씩 쌓는 중</footer>
+  <footer>3편 클리어! 이제 상자에 이름 붙이는 건 문제없다 🎉</footer>
 
   <script>
-    let current = 0;
-    const total = 3;
-    function render() {
-      document.querySelectorAll('.slide').forEach((s,i)=>s.classList.toggle('active', i===current));
-      document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active', i===current));
-    }
-    function moveSlide(dir) { current = (current + dir + total) % total; render(); }
-    function goSlide(i) { current = i; render(); }
-  </script>
+    const links = document.querySelectorAll('[data-toc]');
+    const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href')));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = '#' + entry.target.id;
+          links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(s => s && io.observe(s));
 
-
-  <script>
-    // EXP 바 채우기 애니메이션
-    window.addEventListener('load', () => {
-      setTimeout(() => { document.getElementById('expFill').style.width = '68%'; }, 300);
-    });
-
-    // 오늘의 개발자 운세
-    const fortunes = [
-      "오늘은 버그가 스스로 도망갈 운세 🏃",
-      "세미콜론 하나 빼먹지 않는 날! 🍀",
-      "for문 무한루프 조심... 3번 확인하기 👀",
-      "오늘 짠 코드, 내일의 내가 칭찬할 예정 🙌",
-      "커밋 메시지 센스 만렙 찍는 날 ✍️",
-      "디버깅 운세: 콘솔 로그 하나로 바로 해결 🔍",
-      "새로고침 한 번에 다 되는 기적의 날 ✨"
-    ];
-    function rollFortune() {
-      const el = document.getElementById('fortuneText');
-      el.textContent = fortunes[Math.floor(Math.random() * fortunes.length)];
-    }
-  </script>
-
-  <script>
-    // 스크롤 리빌 애니메이션
     const revealEls = document.querySelectorAll('.reveal');
     const revealIO = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealIO.unobserve(e.target); } });
     }, { threshold: 0.12 });
     revealEls.forEach(el => revealIO.observe(el));
-
-    // 마우스 반짝이 트레일
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!reduceMotion) {
-      const sparkles = ['✨','💫','⭐','🩷'];
-      let lastTime = 0;
-      window.addEventListener('mousemove', (e) => {
-        const now = Date.now();
-        if (now - lastTime < 90) return;
-        lastTime = now;
-        const el = document.createElement('span');
-        el.className = 'sparkle';
-        el.textContent = sparkles[Math.floor(Math.random()*sparkles.length)];
-        el.style.left = e.clientX + 'px';
-        el.style.top = e.clientY + 'px';
-        el.style.setProperty('--tx', (Math.random()*20-10) + 'px');
-        el.style.setProperty('--ty', (Math.random()*10+14) + 'px');
-        document.body.appendChild(el);
-        setTimeout(() => el.remove(), 700);
-      });
-    }
   </script>
+
 </body>
 </html>
