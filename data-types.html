@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>데이터와 자료형 · 마리.log</title>
+<style>
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&family=JetBrains+Mono:wght@400;600&display=swap');
 
 :root {
@@ -696,3 +703,239 @@ a, button, summary, .toc a, .episode-row, .dot, .carousel-arrow {
 }
 
 /* 캐러셀 크로스페이드 전환은 위쪽 .slide 규칙에서 처리함 */
+
+</style>
+</head>
+<body>
+
+  <nav class="topnav">
+    <a href="index.html" class="brand">마리<span>.log</span></a>
+    <div class="topnav-links"><a href="index.html">← 목록으로</a></div>
+    <a class="topnav-cta" href="https://github.com" target="_blank">GitHub ↗</a>
+  </nav>
+
+  <div class="wrap">
+
+    <!-- 배너 (메인과 다른 톤: 민트-스카이) -->
+    <div class="post-banner post-banner-alt reveal">
+      <div class="breadcrumb">🎮 언리얼 엔진 <b>›</b> C <b>›</b> <b>데이터와 자료형</b></div>
+      <h1>📦 데이터와 자료형</h1>
+      <p class="mood">오늘의 정신상태: 숫자도 상자에 담아 보관하는 법을 배웠다 📦</p>
+    </div>
+
+    <!-- 회차 바로가기 -->
+    <div class="ep-strip">
+      <a href="c-basic-structure.html">1편 · 기본 구조</a>
+      <span class="current">2편 · 데이터와 자료형</span>
+    </div>
+
+    <div class="post-layout">
+
+      <!-- 왼쪽: 카테고리 이동 -->
+      <aside class="side-nav">
+        <p class="side-nav-title">📂 카테고리</p>
+        <a class="side-nav-item current" href="category-c.html">🎮 언리얼 엔진</a>
+        <p class="side-nav-sub">
+          └ <a href="category-cpp.html" style="color:inherit;">C++</a><br>
+          └ <a href="category-c.html" style="color:inherit;">C (현재)</a><br>
+          └ 블루프린트
+        </p>
+        <a class="side-nav-item" href="index.html#explore">🎨 웹툰 PD 스터디</a>
+        <a class="side-nav-item" href="index.html#explore">🐙 Git & 협업</a>
+      </aside>
+
+      <!-- 가운데: 실제 글 -->
+      <article class="article-box">
+
+        <section class="block reveal" id="data">
+          <div class="block-eyebrow"><span class="dot"></span>DATA</div>
+          <h2>데이터(Data)란?</h2>
+          <p>문자, 숫자, 기호 등의 형태로 된 <b>의미 단위</b>이다. 컴퓨터가 다루는 모든 정보는 결국 데이터로 표현된다.</p>
+        </section>
+
+        <section class="block reveal" id="unit">
+          <div class="block-eyebrow"><span class="dot"></span>UNIT</div>
+          <h2>데이터 단위</h2>
+          <p>데이터는 크기에 따라 아래와 같은 단위로 나뉜다.</p>
+
+          <table class="data-table">
+            <thead>
+              <tr><th>단위</th><th>정의</th><th>크기</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>비트 (Bit)</td><td>0 또는 1</td><td>TRUE / FALSE</td></tr>
+              <tr><td>1 바이트 (Byte)</td><td>8 Bits</td><td>영문자/숫자 1글자 : 1 Byte<br>한글 1글자 : 2 Bytes</td></tr>
+              <tr><td>1 킬로바이트 (KB)</td><td>1,024 Bytes</td><td>장문의 텍스트</td></tr>
+              <tr><td>1 메가바이트 (MB)</td><td>1,024 KB</td><td>저용량 이미지, 음악 파일</td></tr>
+              <tr><td>1 기가바이트 (GB)</td><td>1,024 MB</td><td>20~40분 길이의 동영상 파일</td></tr>
+              <tr><td>1 테라바이트 (TB)</td><td>1,024 GB</td><td>약 200개의 동영상 파일</td></tr>
+            </tbody>
+          </table>
+
+          <p style="margin-top:16px">비트 8개가 모이면 1바이트가 된다. 그림으로 보면 이렇다.</p>
+
+          <div class="byte-diagram">
+            <div>
+              <div style="display:flex; gap:6px;">
+                <span class="bit-chip">0</span><span class="bit-chip">1</span><span class="bit-chip">0</span><span class="bit-chip">1</span>
+                <span class="bit-chip">1</span><span class="bit-chip">0</span><span class="bit-chip">0</span><span class="bit-chip">1</span>
+              </div>
+              <p style="text-align:center; font-size:12px; color:var(--ink-soft); margin-top:8px;">0과 1이 8개</p>
+            </div>
+            <span class="byte-arrow">➜</span>
+            <div class="byte-result">1 BYTE</div>
+          </div>
+          <div class="tip-bubble"><b>정리하면 👉</b> 0과 1(비트) 8개가 모여야 비로소 문자 하나를 표현할 수 있는 1바이트가 된다.</div>
+        </section>
+
+        <section class="block reveal" id="datatype">
+          <div class="block-eyebrow"><span class="dot"></span>TYPE</div>
+          <h2>자료형(Data Type)이란?</h2>
+          <p><b>데이터를 표현하는 방법</b>, 즉 데이터의 종류이다. 자료형은 메모리 공간의 크기와 자료의 형태를 정의한다.</p>
+
+          <div class="type-blocks">
+            <div class="type-block t-int"><div class="t-name">int</div><div class="t-val">123</div></div>
+            <div class="type-block t-float"><div class="t-name">float</div><div class="t-val">3.14</div></div>
+            <div class="type-block t-char"><div class="t-name">char</div><div class="t-val">'A'</div></div>
+            <div class="type-block t-string"><div class="t-name">string</div><div class="t-val">"안녕하세요"</div></div>
+            <div class="type-block t-bool"><div class="t-name">bool</div><div class="t-val">true/false</div></div>
+          </div>
+
+          <h2 style="margin-top:26px;">💠 C++의 자료형 종류</h2>
+          <div class="type-group">
+            <div class="type-group-card">
+              <div class="g-title">문자형</div>
+              <div class="g-list">char, wchar_t<br>char16_t, char32_t</div>
+            </div>
+            <div class="type-group-card">
+              <div class="g-title">정수형</div>
+              <div class="g-list">short, int<br>long, long long</div>
+            </div>
+            <div class="type-group-card">
+              <div class="g-title">실수형</div>
+              <div class="g-list">float, double<br>long double</div>
+            </div>
+            <div class="type-group-card">
+              <div class="g-title">논리형</div>
+              <div class="g-list">bool</div>
+            </div>
+          </div>
+          <div class="tip-bubble"><b>참고 👉</b> C++에는 Byte 타입이 따로 없고, char가 보통 1바이트 크기로 사용된다.</div>
+
+          <p style="margin-top:16px">자료형별 설명과 예제는 다음과 같다.</p>
+          <table class="data-table">
+            <thead>
+              <tr><th>자료형</th><th>설명</th><th>예제</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>int</td><td>정수 (소수점 없는 숫자)</td><td>10, -3, 1000</td></tr>
+              <tr><td>float</td><td>실수 (소수점 있는 숫자)</td><td>3.14, -0.5</td></tr>
+              <tr><td>char</td><td>문자 하나</td><td>'A', 'B', 'C'</td></tr>
+              <tr><td>string</td><td>여러 글자</td><td>"Hello", "C++ 공부"</td></tr>
+              <tr><td>bool</td><td>참/거짓</td><td>true, false</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="block layout-split reveal" id="variable">
+          <div>
+            <div class="block-eyebrow"><span class="dot"></span>VARIABLE</div>
+            <h2>데이터와 변수의 관계</h2>
+            <p>
+              자료형만으로는 데이터를 "어떻게 저장할지"만 정해질 뿐, 그 데이터를 다시 꺼내 쓸 방법이 없다.
+              그래서 <b>변수(Variable)</b>라는 이름표를 붙여 데이터를 담아둔다.
+            </p>
+            <pre><code>int age = 20;</code></pre>
+          </div>
+          <ul class="annotation-list">
+            <li><b>int</b> — 이 상자에 어떤 종류의 데이터가 들어갈지 정하는 자료형이다.</li>
+            <li><b>age</b> — 상자에 붙이는 이름표, 즉 변수명이다.</li>
+            <li><b>20</b> — 상자 안에 실제로 담기는 데이터(값)이다.</li>
+          </ul>
+        </section>
+
+        <div class="margin-note reveal"><b>여백 메모 ✏️</b> 자료형은 "상자의 종류", 변수는 "이름이 붙은 상자", 데이터는 "상자 안에 든 내용물"이라고 정리하면 세 개념이 헷갈리지 않는다.</div>
+
+        <section class="block reveal" id="detail">
+          <div class="block-eyebrow"><span class="dot"></span>DETAIL</div>
+          <h2>자료형별 크기와 범위</h2>
+          <p>같은 정수형이라도 크기(바이트)에 따라 표현할 수 있는 범위가 다르다. 필요한 만큼만 적절한 자료형을 골라 쓰는 것이 메모리를 절약하는 방법이다.</p>
+
+          <table class="data-table">
+            <thead>
+              <tr><th>자료형</th><th>형태</th><th>크기(byte)</th><th>범위</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>bool</td><td>논리</td><td>1</td><td>true(1) / false(0)</td></tr>
+              <tr><td>char</td><td>정수(문자)</td><td>1</td><td>-128 ~ 127</td></tr>
+              <tr><td>wchar_t</td><td>문자</td><td>2</td><td>0 ~ 65,535</td></tr>
+              <tr><td>char16_t</td><td>문자</td><td>2</td><td>0 ~ 65,535 (UTF-16)</td></tr>
+              <tr><td>char32_t</td><td>문자</td><td>4</td><td>0 ~ 4,294,967,295 (UTF-32)</td></tr>
+              <tr><td>short</td><td>정수</td><td>2</td><td>-32,768 ~ 32,767</td></tr>
+              <tr><td>int</td><td>정수</td><td>4</td><td>-2,147,483,648 ~ 2,147,483,647</td></tr>
+              <tr><td>long</td><td>정수</td><td>4</td><td>-2,147,483,648 ~ 2,147,483,647</td></tr>
+              <tr><td>long long</td><td>정수</td><td>8</td><td>약 -9.2경 ~ 9.2경</td></tr>
+              <tr><td>float</td><td>실수</td><td>4</td><td>소수점 6자리 정밀도</td></tr>
+              <tr><td>double</td><td>실수</td><td>8</td><td>소수점 15자리 정밀도</td></tr>
+              <tr><td>long double</td><td>실수</td><td>8</td><td>구현에 따라 다름</td></tr>
+            </tbody>
+          </table>
+          <div class="tip-bubble"><b>실전 팁 👉</b> 정수는 보통 int, 소수는 double을 기본으로 쓰고, 메모리를 아껴야 할 때만 short/float처럼 더 작은 자료형을 고려한다.</div>
+        </section>
+
+        <a class="next-ep reveal" href="category-c.html">
+          <span class="preview-ribbon">다음화 예고</span>
+          <h3>변수 선언과 초기화</h3>
+          <p>상자를 만드는 것과 그 상자에 처음 값을 채우는 것은 어떻게 다를까? 다음 글에서 이어진다.</p>
+        </a>
+
+      </article>
+
+      <!-- 오른쪽: 상세 목차 -->
+      <aside class="toc-detailed">
+        <p class="toc-detailed-title">📖 이 글의 목차</p>
+        <a href="#data" data-toc><span class="n">00</span> 데이터란</a>
+        <a href="#unit" data-toc><span class="n">01</span> 데이터 단위</a>
+        <a href="#datatype" data-toc><span class="n">02</span> 자료형이란</a>
+        <a href="#variable" data-toc><span class="n">03</span> 데이터와 변수</a>
+        <a href="#detail" data-toc><span class="n">04</span> 크기와 범위</a>
+      </aside>
+
+    </div>
+
+    <!-- 하단 글 목록 -->
+    <div class="more-posts">
+      <p class="more-posts-title">📚 C 기초 다른 글</p>
+      <div class="ep-strip">
+        <a href="c-basic-structure.html">1편 · 기본 구조</a>
+        <span class="current">2편 · 데이터와 자료형</span>
+        <a href="index.html">전체 목록 →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>2편 클리어! 다음은 변수 차례이다 🎉</footer>
+
+  <script>
+    const links = document.querySelectorAll('[data-toc]');
+    const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href')));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = '#' + entry.target.id;
+          links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(s => s && io.observe(s));
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealIO.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealIO.observe(el));
+  </script>
+
+</body>
+</html>

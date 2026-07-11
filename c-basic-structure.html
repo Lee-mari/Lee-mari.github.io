@@ -276,7 +276,9 @@ code { font-family: 'JetBrains Mono', monospace; }
 .next-ep {
   margin-top: 64px; border: 3px dashed var(--ink); border-radius: 22px;
   padding: 28px; text-align: center; background: var(--paper-pink);
+  display: block; text-decoration: none; color: inherit; transition: transform 0.15s ease;
 }
+a.next-ep:hover { transform: translateY(-3px); }
 .next-ep .preview-ribbon {
   display: inline-block; font-family: 'Jua', sans-serif; font-size: 12.5px;
   background: var(--ink); color: #fff; padding: 4px 14px; border-radius: 10px; margin-bottom: 12px;
@@ -619,6 +621,44 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; margin-top
 .more-posts-title { font-family: 'Jua', sans-serif; font-size: 16px; color: var(--ink-soft); margin-bottom: 14px; }
 
 /* =========================================================
+   데이터/자료형 글 전용 (메인과 다른 톤)
+   ========================================================= */
+.post-banner-alt { background: linear-gradient(115deg, var(--mint), var(--sky)); }
+
+/* 예쁜 표 */
+.data-table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 16px 0; border: 3px solid var(--ink); border-radius: 16px; overflow: hidden; font-size: 13.5px; }
+.data-table th, .data-table td { padding: 12px 14px; text-align: center; border-bottom: 2px solid #eee2d6; }
+.data-table th { background: var(--ink); color: #fff; font-family: 'Jua', sans-serif; font-size: 12.5px; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:nth-child(even) td { background: #FAF6EF; }
+.data-table td:first-child { font-family: 'JetBrains Mono', monospace; color: var(--grape-deep); font-weight: 600; }
+
+/* 비트→바이트 다이어그램 */
+.byte-diagram { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; justify-content: center; margin: 20px 0; padding: 24px; background: #FAF6EF; border: 3px dashed var(--ink); border-radius: 18px; }
+.bit-chip { width: 34px; height: 34px; border-radius: 50%; background: var(--card); border: 2.5px solid var(--ink); display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 13px; }
+.bit-chip:nth-child(odd) { color: var(--coral-deep); }
+.bit-chip:nth-child(even) { color: var(--sky); }
+.byte-arrow { font-size: 22px; color: var(--ink-soft); }
+.byte-result { background: var(--mint); color: #fff; font-family: 'Jua', sans-serif; padding: 10px 22px; border-radius: 14px; border: 2.5px solid var(--ink); font-size: 16px; }
+
+/* 자료형 블럭 */
+.type-blocks { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 12px; margin: 18px 0; }
+.type-block { border: 2.5px solid var(--ink); border-radius: 14px; padding: 16px 10px; text-align: center; box-shadow: 4px 4px 0 var(--shadow); }
+.type-block .t-name { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+.type-block .t-val { font-size: 12.5px; color: var(--ink-soft); }
+.type-block.t-int { background: #FFD9E2; }
+.type-block.t-float { background: #D9F7DF; }
+.type-block.t-char { background: #D6EFFF; }
+.type-block.t-string { background: #ECD9F7; }
+.type-block.t-bool { background: #FBF3C7; }
+
+/* 자료형 카테고리 카드 */
+.type-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 12px; margin: 16px 0; }
+.type-group-card { border: 2.5px solid var(--ink); border-radius: 14px; padding: 14px 16px; background: var(--card); }
+.type-group-card .g-title { font-family: 'Jua', sans-serif; font-size: 13.5px; color: var(--grape-deep); margin-bottom: 6px; }
+.type-group-card .g-list { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--ink); line-height: 1.9; }
+
+/* =========================================================
    커스텀 커서 & 스파클
    ========================================================= */
 body {
@@ -686,7 +726,7 @@ a, button, summary, .toc a, .episode-row, .dot, .carousel-arrow {
     <!-- 회차 바로가기 -->
     <div class="ep-strip">
       <span class="current">C 기초 1편 · 기본 구조</span>
-      <span class="locked">2편 · 데이터와 자료형 (곧)</span>
+      <a href="data-types.html">2편 · 데이터와 자료형</a>
     </div>
 
     <div class="post-layout">
@@ -817,11 +857,11 @@ int main()
           <div class="tip-bubble"><b>확인 포인트 👉</b> "안녕하세요."와 "제 나이는 80 살입니다."가 각각 다른 줄에 출력되면 성공이다.</div>
         </section>
 
-        <div class="next-ep reveal">
+        <a class="next-ep reveal" href="data-types.html">
           <span class="preview-ribbon">다음화 예고</span>
           <h3>데이터와 자료형</h3>
           <p>숫자 80을 직접 쓰지 않고, "나이"라는 이름의 상자에 담아두려면 어떻게 해야 할까? 다음 글에서 이어진다.</p>
-        </div>
+        </a>
 
       </article>
 
@@ -842,7 +882,7 @@ int main()
       <p class="more-posts-title">📚 C 기초 다른 글</p>
       <div class="ep-strip">
         <span class="current">C언어의 기본 구조</span>
-        <span class="locked">데이터와 자료형 (곧)</span>
+        <a href="data-types.html">데이터와 자료형</a>
         <a href="index.html">전체 목록 →</a>
       </div>
     </div>
