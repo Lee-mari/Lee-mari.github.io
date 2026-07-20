@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>연산자 · 마리.log</title>
+<style>
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&family=JetBrains+Mono:wght@400;600&display=swap');
 
 :root {
@@ -793,3 +800,374 @@ a, button, summary, .toc a, .episode-row, .dot, .carousel-arrow {
 }
 
 /* 캐러셀 크로스페이드 전환은 위쪽 .slide 규칙에서 처리함 */
+
+</style>
+</head>
+<body>
+
+  <nav class="topnav">
+    <a href="index.html" class="brand">마리<span>.log</span></a>
+    <div class="topnav-links"><a href="index.html">← 목록으로</a></div>
+    <a class="topnav-cta" href="https://github.com" target="_blank">GitHub ↗</a>
+  </nav>
+
+  <div class="wrap">
+
+    <div class="post-banner post-banner-alt reveal">
+      <div class="breadcrumb">🎮 언리얼 엔진 <b>›</b> C <b>›</b> <b>연산자</b></div>
+      <h1>⚙️ 연산자</h1>
+      <p class="mood">오늘의 정신상태: 키보드 기호 하나하나가 다 일을 하고 있었다 ⌨️</p>
+    </div>
+
+    <div class="ep-strip">
+      <a href="c-basic-structure.html">1편 · 기본 구조</a>
+      <a href="data-types.html">2편 · 데이터와 자료형</a>
+      <a href="variables.html">3편 · 변수</a>
+      <span class="current">4편 · 연산자</span>
+    </div>
+
+    <div class="post-layout">
+
+      <aside class="side-nav">
+        <p class="side-nav-title">📂 카테고리</p>
+        <a class="side-nav-item current" href="category-c.html">🎮 언리얼 엔진</a>
+        <p class="side-nav-sub">
+          └ <a href="category-cpp.html" style="color:inherit;">C++</a><br>
+          └ <a href="category-c.html" style="color:inherit;">C (현재)</a><br>
+          └ 블루프린트
+        </p>
+        <a class="side-nav-item" href="category-cs.html">💻 CS 기초</a>
+        <a class="side-nav-item" href="index.html#explore">🎨 웹툰 PD 스터디</a>
+        <a class="side-nav-item" href="index.html#explore">🐙 Git & 협업</a>
+      </aside>
+
+      <article class="article-box">
+
+        <section class="block reveal" id="intro">
+          <div class="block-eyebrow"><span class="dot"></span>OPERATOR</div>
+          <h2>연산자 종류</h2>
+          <p>C언어와 C++은 연산자가 거의 동일하다. 값을 계산하고, 저장하고, 비교하고, 판단하는 <b>6가지 연산자</b>를 하나씩 살펴본다.</p>
+          <div class="op-key-row">
+            <div class="op-key"><span class="op-sym">+ −</span><span class="op-label">산술</span></div>
+            <div class="op-key"><span class="op-sym">=</span><span class="op-label">할당</span></div>
+            <div class="op-key"><span class="op-sym">==</span><span class="op-label">비교</span></div>
+            <div class="op-key"><span class="op-sym">&&</span><span class="op-label">논리</span></div>
+            <div class="op-key"><span class="op-sym">++</span><span class="op-label">증감</span></div>
+            <div class="op-key"><span class="op-sym">&amp;</span><span class="op-label">비트</span></div>
+          </div>
+        </section>
+
+        <!-- 산술 연산자 -->
+        <section class="block reveal" id="arith">
+          <div class="block-eyebrow"><span class="dot"></span>ARITHMETIC</div>
+          <h2>1. 산술 연산자</h2>
+          <p>산술 연산자는 기본적인 수학 연산을 수행한다.</p>
+
+          <div class="op-key-row">
+            <div class="op-key"><span class="op-sym">+</span><span class="op-label">덧셈</span></div>
+            <div class="op-key"><span class="op-sym">−</span><span class="op-label">뺄셈</span></div>
+            <div class="op-key"><span class="op-sym">*</span><span class="op-label">곱셈</span></div>
+            <div class="op-key"><span class="op-sym">/</span><span class="op-label">나눗셈</span></div>
+            <div class="op-key"><span class="op-sym">%</span><span class="op-label">나머지</span></div>
+          </div>
+
+          <pre><code>int a = 10;
+int b = 20;
+int sum = a + b;        // 30
+int diff = b - a;       // 10
+int prod = a * b;       // 200
+int quotient = b / a;   // 2
+int remainder = b % a;  // 0</code></pre>
+
+          <div class="figure">
+            <img src="images/calc-demo.gif" alt="숫자 두 개를 입력해 더하는 간단한 계산기 프로그램 시연 GIF">
+            <p class="figure-caption">그림. 산술 연산자로 만든 간단한 덧셈 계산기 프로그램</p>
+          </div>
+        </section>
+
+        <!-- 할당 연산자 -->
+        <section class="block reveal" id="assign">
+          <div class="block-eyebrow"><span class="dot"></span>ASSIGNMENT</div>
+          <h2>2. 할당 연산자 (대입 연산자)</h2>
+
+          <h3 style="font-family:'Jua',sans-serif; font-size:15px;">기본 할당 연산자</h3>
+          <pre><code>int a = 10;  // 변수 a를 선언하고 10으로 초기화</code></pre>
+          <div class="tip-bubble"><b>정리하면 👉</b> 기본 할당 연산자는 변수를 초기화하거나 값을 설정하는 데 사용된다. 변수를 선언하고 초기 값을 할당하는 것과 같은 의미이다.</div>
+
+          <h3 style="font-family:'Jua',sans-serif; font-size:15px; margin-top:20px;">복합 할당 연산자</h3>
+          <p>복합 할당 연산자는 값을 변수에 저장하고, 동시에 다른 연산(덧셈, 뺄셈 등)을 수행한다.</p>
+
+          <div class="op-key-row">
+            <div class="op-key"><span class="op-sym">+=</span><span class="op-label">더하고 할당</span></div>
+            <div class="op-key"><span class="op-sym">-=</span><span class="op-label">빼고 할당</span></div>
+            <div class="op-key"><span class="op-sym">*=</span><span class="op-label">곱하고 할당</span></div>
+            <div class="op-key"><span class="op-sym">/=</span><span class="op-label">나누고 할당</span></div>
+            <div class="op-key"><span class="op-sym">%=</span><span class="op-label">나머지 할당</span></div>
+          </div>
+
+          <div class="op-example"><span class="op-chip">a = 5</span><span class="op-arrow">➜ a += 3 ➜</span><span class="op-result">a = 8</span></div>
+          <div class="op-example"><span class="op-chip">a = 5</span><span class="op-arrow">➜ a -= 3 ➜</span><span class="op-result">a = 2</span></div>
+          <div class="op-example"><span class="op-chip">a = 5</span><span class="op-arrow">➜ a *= 3 ➜</span><span class="op-result">a = 15</span></div>
+          <div class="op-example"><span class="op-chip">a = 9</span><span class="op-arrow">➜ a /= 3 ➜</span><span class="op-result">a = 3</span></div>
+          <div class="op-example"><span class="op-chip">a = 9</span><span class="op-arrow">➜ a %= 4 ➜</span><span class="op-result">a = 1</span></div>
+        </section>
+
+        <!-- 비교 연산자 -->
+        <section class="block reveal" id="compare">
+          <div class="block-eyebrow"><span class="dot"></span>COMPARISON</div>
+          <h2>3. 비교 연산자</h2>
+          <p>비교 연산자는 두 값을 서로 비교하여 그 결과를 판단하는 연산자이다. 일반적으로 <code>true</code> 또는 <code>false</code>라는 논리값을 반환한다.</p>
+
+          <pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
+
+int main()
+{
+    bool r1 = (5 == 5);  // true  — 같다
+    bool r2 = (5 != 3);  // true  — 같지 않다
+    bool r3 = (5 > 3);   // true  — 크다
+    bool r4 = (3 < 5);   // true  — 작다
+    bool r5 = (5 >= 5);  // true  — 크거나 같다
+    bool r6 = (3 <= 5);  // true  — 작거나 같다
+    return 0;
+}</code></pre>
+
+          <div class="comic-strip">
+            <div class="frame"><span class="frame-tag">==</span><code>5 == 5 → true</code></div>
+            <div class="frame"><span class="frame-tag">!=</span><code>5 != 3 → true</code></div>
+            <div class="frame"><span class="frame-tag">&gt;</span><code>5 &gt; 3 → true</code></div>
+            <div class="frame"><span class="frame-tag">&lt;</span><code>3 &lt; 5 → true</code></div>
+            <div class="frame"><span class="frame-tag">&gt;=</span><code>5 &gt;= 5 → true</code></div>
+            <div class="frame"><span class="frame-tag">&lt;=</span><code>3 &lt;= 5 → true</code></div>
+          </div>
+        </section>
+
+        <!-- 논리 연산자 -->
+        <section class="block reveal" id="logic">
+          <div class="block-eyebrow"><span class="dot"></span>LOGICAL</div>
+          <h2>4. 논리 연산자</h2>
+
+          <div class="op-key-row">
+            <div class="op-key"><span class="op-sym">&&</span><span class="op-label">그리고</span></div>
+            <div class="op-key"><span class="op-sym">||</span><span class="op-label">또는</span></div>
+            <div class="op-key"><span class="op-sym">!</span><span class="op-label">부정</span></div>
+          </div>
+
+          <ul class="annotation-list">
+            <li><b>&& (그리고)</b> — 둘 다 true여야 true를 반환한다. <code>true && false → false</code></li>
+            <li><b>|| (또는)</b> — 하나라도 true면 true를 반환한다. <code>true || false → true</code></li>
+            <li><b>! (부정)</b> — true면 false를, false면 true를 반환한다. 값 앞에 붙인다. <code>!true → false</code></li>
+          </ul>
+
+          <pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
+
+int main()
+{
+    bool a = true;
+    bool b = false;
+
+    bool r1 = (a && b);  // false
+    bool r2 = (a || b);  // true
+    bool r3 = !a;        // false
+    return 0;
+}</code></pre>
+        </section>
+
+        <!-- 증감 연산자 -->
+        <section class="block reveal" id="incdec">
+          <div class="block-eyebrow"><span class="dot"></span>INC/DEC</div>
+          <h2>5. 증감 연산자</h2>
+
+          <div class="op-key-row">
+            <div class="op-key"><span class="op-sym">++</span><span class="op-label">증가</span></div>
+            <div class="op-key"><span class="op-sym">--</span><span class="op-label">감소</span></div>
+          </div>
+
+          <div class="op-example"><span class="op-chip">a = 5</span><span class="op-arrow">➜ a++ ➜</span><span class="op-result">a = 6</span></div>
+          <div class="op-example"><span class="op-chip">a = 5</span><span class="op-arrow">➜ a-- ➜</span><span class="op-result">a = 4</span></div>
+        </section>
+
+        <div class="margin-note reveal"><b>여백 메모 ✏️</b> for문에서 매번 봤던 <code>i++</code>가 바로 이 증가 연산자이다. "i를 1씩 늘려라"는 뜻이었다.</div>
+
+        <!-- 비트 연산자 -->
+        <section class="block reveal" id="bitwise">
+          <div class="block-eyebrow"><span class="dot"></span>BITWISE</div>
+          <h2>6. 비트 연산자</h2>
+          <p>비트 연산자는 숫자를 2진수(비트) 단위로 다룬다. 평소엔 잘 안 보이지만, 게임 최적화나 플래그 처리에 종종 쓰인다.</p>
+
+          <div class="type-spec-card">
+            <div class="type-spec-head"><span class="type-spec-name">&amp;</span><span class="type-spec-size">AND</span></div>
+            <p>두 비트가 <b>둘 다 1일 때만</b> 결과가 1이 된다.</p>
+            <div class="bit-pre">  0101  (a의 이진수)
+&amp; 0011  (b의 이진수)
+  ----
+  0001  (AND 연산 결과)</div>
+            <pre><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int a = 5;  // 0101
+    int b = 3;  // 0011
+    int result = a & b;  // 0001
+
+    printf("a & b의 결과: %d\n", result);  // 1
+    return 0;
+}</code></pre>
+          </div>
+
+          <div class="type-spec-card">
+            <div class="type-spec-head"><span class="type-spec-name">|</span><span class="type-spec-size">OR</span></div>
+            <p>두 비트 중 <b>하나라도 1이면</b> 결과가 1이 된다.</p>
+            <div class="bit-pre">  0101  (a의 이진수)
+| 0011  (b의 이진수)
+  ----
+  0111  (OR 연산 결과)</div>
+            <pre><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int a = 5;  // 0101
+    int b = 3;  // 0011
+    int result = a | b;  // 0111
+
+    printf("a | b의 결과: %d\n", result);  // 7
+    return 0;
+}</code></pre>
+          </div>
+
+          <div class="type-spec-card">
+            <div class="type-spec-head"><span class="type-spec-name">^</span><span class="type-spec-size">XOR</span></div>
+            <p>두 비트가 <b>서로 다르면 1</b>, 같으면 0이 된다.</p>
+            <div class="bit-pre">  0101  (a의 이진수)
+^ 0011  (b의 이진수)
+  ----
+  0110  (XOR 연산 결과)</div>
+            <pre><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int a = 5;  // 0101
+    int b = 3;  // 0011
+    int result = a ^ b;  // 0110
+
+    printf("a ^ b의 결과: %d\n", result);  // 6
+    return 0;
+}</code></pre>
+          </div>
+
+          <div class="type-spec-card">
+            <div class="type-spec-head"><span class="type-spec-name">~</span><span class="type-spec-size">NOT</span></div>
+            <p>단항 연산자로, 모든 비트를 반전(0↔1)시킨다.</p>
+            <div class="bit-pre">  0101  (a의 이진수)
+~ ----
+  1010  (NOT 연산 결과)</div>
+            <pre><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int a = 5;  // 0101
+    int result = ~a;  // 1010
+
+    printf("a의 NOT 연산 결과: %d\n", result);  // -6
+    return 0;
+}</code></pre>
+          </div>
+
+          <div class="type-spec-card">
+            <div class="type-spec-head"><span class="type-spec-name">&lt;&lt;</span><span class="type-spec-size">왼쪽 시프트</span></div>
+            <p>모든 비트를 지정된 횟수만큼 왼쪽으로 이동시킨다. 오른쪽 끝엔 0이 채워진다.</p>
+            <div class="bit-pre">   0101  (a의 이진수)
+&lt;&lt; 2
+   ----
+  10100  (왼쪽 시프트 결과)</div>
+            <pre><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int a = 5;  // 0101
+    int result = a &lt;&lt; 2;  // 10100
+
+    printf("a &lt;&lt; 2의 결과: %d\n", result);  // 20
+    return 0;
+}</code></pre>
+          </div>
+
+          <div class="type-spec-card">
+            <div class="type-spec-head"><span class="type-spec-name">&gt;&gt;</span><span class="type-spec-size">오른쪽 시프트</span></div>
+            <p>모든 비트를 지정된 횟수만큼 오른쪽으로 이동시킨다.</p>
+            <div class="bit-pre">  10100  (a의 이진수)
+&gt;&gt; 2
+   ----
+  00101  (오른쪽 시프트 결과)</div>
+            <pre><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int a = 20;  // 10100
+    int result = a &gt;&gt; 2;  // 00101
+
+    printf("a &gt;&gt; 2의 결과: %d\n", result);  // 5
+    return 0;
+}</code></pre>
+          </div>
+        </section>
+
+        <div class="next-ep reveal">
+          <span class="preview-ribbon">다음화 예고</span>
+          <h3>경찰서 조사 프로그램 만들기</h3>
+          <p>지금까지 배운 변수·자료형·연산자·조건문을 총동원해서, 실제로 쓸 수 있는 미니 프로그램을 만들어본다.</p>
+        </div>
+
+      </article>
+
+      <aside class="toc-detailed">
+        <p class="toc-detailed-title">📖 이 글의 목차</p>
+        <a href="#intro" data-toc><span class="n">00</span> 연산자 종류</a>
+        <a href="#arith" data-toc><span class="n">01</span> 산술 연산자</a>
+        <a href="#assign" data-toc><span class="n">02</span> 할당 연산자</a>
+        <a href="#compare" data-toc><span class="n">03</span> 비교 연산자</a>
+        <a href="#logic" data-toc><span class="n">04</span> 논리 연산자</a>
+        <a href="#incdec" data-toc><span class="n">05</span> 증감 연산자</a>
+        <a href="#bitwise" data-toc><span class="n">06</span> 비트 연산자</a>
+      </aside>
+
+    </div>
+
+    <div class="more-posts">
+      <p class="more-posts-title">📚 C 기초 다른 글</p>
+      <div class="ep-strip">
+        <a href="c-basic-structure.html">1편 · 기본 구조</a>
+        <a href="data-types.html">2편 · 데이터와 자료형</a>
+        <a href="variables.html">3편 · 변수</a>
+        <span class="current">4편 · 연산자</span>
+        <a href="index.html">전체 목록 →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>4편 클리어! 이제 계산기 정도는 만들 수 있다 🎉</footer>
+
+  <script>
+    const links = document.querySelectorAll('[data-toc]');
+    const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href')));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = '#' + entry.target.id;
+          links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(s => s && io.observe(s));
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealIO.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealIO.observe(el));
+  </script>
+
+</body>
+</html>

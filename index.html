@@ -677,6 +677,27 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; margin-top
 .console-mock-bar span:nth-child(2) { background: #FFD23F; }
 .console-mock-bar span:nth-child(3) { background: #38C793; }
 .console-mock-body { padding: 16px 18px; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #F4EFFF; }
+/* 연산자 키캡 */
+.op-key-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 18px 0; }
+.op-key {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  width: 74px; height: 74px; border-radius: 14px; background: var(--card);
+  border: 2.5px solid var(--ink); box-shadow: 0 5px 0 var(--ink);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.op-key:hover { transform: translateY(3px); box-shadow: 0 2px 0 var(--ink); }
+.op-key .op-sym { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 22px; color: var(--coral-deep); }
+.op-key .op-label { font-size: 10px; color: var(--ink-soft); margin-top: 3px; text-align: center; }
+
+/* 연산 전/후 미니 칩 */
+.op-example { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; background: #FAF6EF; border: 2px solid var(--ink); border-radius: 12px; padding: 10px 14px; margin-bottom: 8px; }
+.op-example .op-chip { background: var(--card); border: 2px solid var(--ink); border-radius: 8px; padding: 3px 9px; }
+.op-example .op-arrow { color: var(--ink-soft); }
+.op-example .op-result { background: var(--mint); color: #fff; border-radius: 8px; padding: 3px 9px; font-weight: 700; }
+
+/* 비트 다이어그램 프리 */
+.bit-pre { background: #241D30; color: #F4EFFF; border-radius: 12px; padding: 14px 18px; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; border: 3px solid var(--ink); margin-bottom: 10px; line-height: 1.6; white-space: pre; }
+
 /* 자료형 스펙 카드 */
 .type-spec-card { border: 2.5px solid var(--ink); border-radius: 14px; padding: 14px 18px; margin-bottom: 12px; box-shadow: 4px 4px 0 var(--shadow); background: var(--card); }
 .type-spec-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
@@ -926,6 +947,7 @@ a, button, summary, .toc a, .episode-row, .dot, .carousel-arrow {
                 <a class="post-chip ready" href="c-basic-structure.html">C언어의 기본 구조</a>
                 <a class="post-chip ready" href="data-types.html">데이터와 자료형</a>
                 <a class="post-chip ready" href="variables.html">변수</a>
+                <a class="post-chip ready" href="operators.html">연산자</a>
               </div>
             </details>
             <details class="cat-sub">
