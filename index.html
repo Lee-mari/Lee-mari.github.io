@@ -677,6 +677,14 @@ footer { text-align: center; color: var(--ink-soft); font-size: 13px; margin-top
 .console-mock-bar span:nth-child(2) { background: #FFD23F; }
 .console-mock-bar span:nth-child(3) { background: #38C793; }
 .console-mock-body { padding: 16px 18px; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #F4EFFF; }
+/* 자료형 스펙 카드 */
+.type-spec-card { border: 2.5px solid var(--ink); border-radius: 14px; padding: 14px 18px; margin-bottom: 12px; box-shadow: 4px 4px 0 var(--shadow); background: var(--card); }
+.type-spec-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.type-spec-name { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 16px; color: var(--grape-deep); }
+.type-spec-size { font-size: 11px; font-family: 'Jua', sans-serif; background: var(--paper-pink); border: 2px solid var(--ink); border-radius: 10px; padding: 2px 10px; }
+.type-spec-card p { margin: 0 0 8px; font-size: 13.5px; }
+.type-spec-card pre { margin: 0; }
+
 .figure {
   border: 3px solid var(--ink); border-radius: 16px; overflow: hidden;
   box-shadow: 5px 5px 0 var(--shadow); margin: 18px 0; background: #fff; padding: 10px;
@@ -907,6 +915,7 @@ a, button, summary, .toc a, .episode-row, .dot, .carousel-arrow {
               <div class="post-chips">
                 <a class="post-chip ready" href="for-loop.html">for문 정리</a>
                 <a class="post-chip ready" href="variable-naming.html">변수 이름 규칙</a>
+                <a class="post-chip ready" href="cpp-data-types.html">C++ 자료형</a>
                 <span class="post-chip locked">포인터란?</span>
                 <span class="post-chip locked">클래스 기초</span>
               </div>

@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C++에서 쓰이는 자료형 · 마리.log</title>
+<style>
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&family=JetBrains+Mono:wght@400;600&display=swap');
 
 :root {
@@ -772,3 +779,212 @@ a, button, summary, .toc a, .episode-row, .dot, .carousel-arrow {
 }
 
 /* 캐러셀 크로스페이드 전환은 위쪽 .slide 규칙에서 처리함 */
+
+</style>
+</head>
+<body>
+
+  <nav class="topnav">
+    <a href="index.html" class="brand">마리<span>.log</span></a>
+    <div class="topnav-links"><a href="index.html">← 목록으로</a></div>
+    <a class="topnav-cta" href="https://github.com" target="_blank">GitHub ↗</a>
+  </nav>
+
+  <div class="wrap">
+
+    <div class="post-banner reveal">
+      <div class="breadcrumb">🎮 언리얼 엔진 <b>›</b> C++ <b>›</b> <b>C++ 자료형</b></div>
+      <h1>🔢 C++에서 쓰이는 자료형</h1>
+      <p class="mood">오늘의 정신상태: 상자 종류가 이렇게 많은 줄 몰랐다 📦</p>
+    </div>
+
+    <div class="ep-strip">
+      <a href="for-loop.html">제1화 · for문</a>
+      <a href="variable-naming.html">제2화 · 변수 이름 규칙</a>
+      <span class="current">제3화 · C++ 자료형</span>
+      <span class="locked">제4화 · 연산자 정리 (곧)</span>
+    </div>
+
+    <div class="post-layout">
+
+      <!-- 왼쪽: 카테고리 이동 -->
+      <aside class="side-nav">
+        <p class="side-nav-title">📂 카테고리</p>
+        <a class="side-nav-item current" href="category-cpp.html">🎮 언리얼 엔진</a>
+        <p class="side-nav-sub">
+          └ <a href="category-cpp.html" style="color:inherit;">C++ (현재)</a><br>
+          └ <a href="category-c.html" style="color:inherit;">C</a><br>
+          └ 블루프린트
+        </p>
+        <a class="side-nav-item" href="category-cs.html">💻 CS 기초</a>
+        <a class="side-nav-item" href="index.html#explore">🎨 웹툰 PD 스터디</a>
+        <a class="side-nav-item" href="index.html#explore">🐙 Git & 협업</a>
+      </aside>
+
+      <!-- 가운데: 실제 글 -->
+      <article class="article-box">
+
+        <section class="block layout-story reveal" id="intro">
+          <div class="story-icon">🔢</div>
+          <div>
+            <div class="block-eyebrow"><span class="dot"></span>OVERVIEW</div>
+            <h2>C++에서 쓰이는 자료형</h2>
+            <p>C++은 담을 데이터의 종류에 따라 여러 자료형을 제공한다. 크게 <b>정수형 · 부동소수점형 · 문자형 · 논리형</b> 네 갈래로 나뉜다.</p>
+          </div>
+        </section>
+
+        <!-- 정수형 -->
+        <section class="block reveal" id="int-types">
+          <div class="block-eyebrow"><span class="dot"></span>INTEGER</div>
+          <h2>1. 정수형 (Integer Types)</h2>
+
+          <div class="type-spec-card">
+            <div class="type-spec-head"><span class="type-spec-name">int</span><span class="type-spec-size">보통 4바이트 (32비트)</span></div>
+            <p>기본 정수형이다.</p>
+            <pre><code>int age = 25;  // 나이 저장</code></pre>
+          </div>
+
+          <div class="type-spec-card">
+            <div class="type-spec-head"><span class="type-spec-name">short</span><span class="type-spec-size">보통 2바이트 (16비트)</span></div>
+            <p>작은 정수형이다.</p>
+            <pre><code>short temperature = -5;  // 온도 저장</code></pre>
+          </div>
+
+          <div class="type-spec-card">
+            <div class="type-spec-head"><span class="type-spec-name">long</span><span class="type-spec-size">보통 4바이트 또는 8바이트</span></div>
+            <p>큰 정수형이다.</p>
+            <pre><code>long distance = 1234567890L;  // 거리 저장</code></pre>
+          </div>
+
+          <div class="type-spec-card">
+            <div class="type-spec-head"><span class="type-spec-name">long long</span><span class="type-spec-size">항상 8바이트 (64비트)</span></div>
+            <p>매우 큰 정수형이다.</p>
+            <pre><code>long long bigNumber = 123456789012345LL;  // 큰 숫자 저장</code></pre>
+          </div>
+        </section>
+
+        <!-- 부동소수점형 -->
+        <section class="block reveal" id="float-types">
+          <div class="block-eyebrow"><span class="dot"></span>FLOATING POINT</div>
+          <h2>2. 부동 소수점형 (Floating Point Types)</h2>
+
+          <div class="type-spec-card">
+            <div class="type-spec-head"><span class="type-spec-name">float</span><span class="type-spec-size">보통 4바이트 (32비트)</span></div>
+            <p>단정도 부동 소수점형이다. 소수점 이하 숫자를 저장한다.</p>
+            <pre><code>float weight = 65.5f;  // 무게 저장</code></pre>
+          </div>
+
+          <div class="type-spec-card">
+            <div class="type-spec-head"><span class="type-spec-name">double</span><span class="type-spec-size">보통 8바이트 (64비트)</span></div>
+            <p>배정도 부동 소수점형이다. float보다 더 정밀한 소수점 이하 숫자를 저장한다.</p>
+            <pre><code>double pi = 3.141592653589;  // 원주율 저장</code></pre>
+          </div>
+        </section>
+
+        <!-- 문자형 -->
+        <section class="block reveal" id="char-type">
+          <div class="block-eyebrow"><span class="dot"></span>CHARACTER</div>
+          <h2>3. 문자형 (Character Type)</h2>
+
+          <div class="type-spec-card">
+            <div class="type-spec-head"><span class="type-spec-name">char</span><span class="type-spec-size">보통 1바이트 (8비트)</span></div>
+            <p>하나의 문자를 저장하는 문자형이다.</p>
+            <pre><code>char grade = 'A';  // 학점 저장</code></pre>
+          </div>
+        </section>
+
+        <!-- 논리형 -->
+        <section class="block reveal" id="bool-type">
+          <div class="block-eyebrow"><span class="dot"></span>BOOLEAN</div>
+          <h2>4. 논리형 (Boolean Type)</h2>
+
+          <div class="type-spec-card">
+            <div class="type-spec-head"><span class="type-spec-name">bool</span><span class="type-spec-size">보통 1바이트 (8비트)</span></div>
+            <p>참(true) 또는 거짓(false) 값을 저장하는 논리형이다.</p>
+            <pre><code>bool isStudent = true;  // 학생 여부 저장</code></pre>
+          </div>
+        </section>
+
+        <!-- 요약 표 -->
+        <section class="block reveal" id="summary">
+          <div class="block-eyebrow"><span class="dot"></span>SUMMARY</div>
+          <h2>C++에서 사용되는 기본 자료형 정리</h2>
+
+          <table class="data-table">
+            <thead>
+              <tr><th>자료형</th><th>크기</th><th>설명</th><th>예시</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>int</td><td>4바이트</td><td>정수 저장</td><td>int age = 25;</td></tr>
+              <tr><td>short</td><td>2바이트</td><td>작은 정수 저장</td><td>short temperature = -5;</td></tr>
+              <tr><td>long</td><td>4바이트 또는 8바이트</td><td>큰 정수 저장</td><td>long distance = 1234567890L;</td></tr>
+              <tr><td>long long</td><td>8바이트</td><td>매우 큰 정수 저장</td><td>long long bigNumber = 123456789012345LL;</td></tr>
+              <tr><td>unsigned</td><td>4바이트</td><td>양수 정수 저장</td><td>unsigned int positiveNumber = 100;</td></tr>
+              <tr><td>float</td><td>4바이트</td><td>단정도 소수 저장</td><td>float weight = 65.5f;</td></tr>
+              <tr><td>double</td><td>8바이트</td><td>배정도 소수 저장</td><td>double pi = 3.141592653589;</td></tr>
+              <tr><td>char</td><td>1바이트</td><td>문자 저장</td><td>char grade = 'A';</td></tr>
+              <tr><td>bool</td><td>1바이트</td><td>논리값 저장</td><td>bool isStudent = true;</td></tr>
+            </tbody>
+          </table>
+
+          <div class="tip-bubble"><b>참고 👉</b> <code>unsigned</code>는 별도의 자료형이 아니라, int 앞에 붙여서 "양수만 저장하겠다"고 선언하는 수식어이다.</div>
+        </section>
+
+        <div class="next-ep reveal">
+          <span class="preview-ribbon">다음화 예고</span>
+          <h3>연산자 정리</h3>
+          <p>상자 안에 값을 담는 법을 배웠으니, 이제 그 값들끼리 더하고 빼고 비교하는 연산자를 알아볼 차례이다.</p>
+        </div>
+
+      </article>
+
+      <!-- 오른쪽: 상세 목차 -->
+      <aside class="toc-detailed">
+        <p class="toc-detailed-title">📖 이 글의 목차</p>
+        <a href="#intro" data-toc><span class="n">00</span> 들어가며</a>
+        <a href="#int-types" data-toc><span class="n">01</span> 정수형</a>
+        <a href="#float-types" data-toc><span class="n">02</span> 부동소수점형</a>
+        <a href="#char-type" data-toc><span class="n">03</span> 문자형</a>
+        <a href="#bool-type" data-toc><span class="n">04</span> 논리형</a>
+        <a href="#summary" data-toc><span class="n">05</span> 정리표</a>
+      </aside>
+
+    </div>
+
+    <!-- 하단 글 목록 -->
+    <div class="more-posts">
+      <p class="more-posts-title">📚 C++ 다른 글</p>
+      <div class="ep-strip">
+        <a href="for-loop.html">제1화 · for문</a>
+        <a href="variable-naming.html">제2화 · 변수 이름 규칙</a>
+        <span class="current">제3화 · C++ 자료형</span>
+        <a href="index.html">전체 목록 →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>3화 클리어! 이제 상자 종류는 다 안다 🎉</footer>
+
+  <script>
+    const links = document.querySelectorAll('[data-toc]');
+    const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href')));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = '#' + entry.target.id;
+          links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(s => s && io.observe(s));
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealIO.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealIO.observe(el));
+  </script>
+
+</body>
+</html>
