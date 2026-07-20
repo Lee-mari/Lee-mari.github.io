@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CS 기초 카테고리 · 마리.log</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="topnav">
+    <a href="index.html" class="brand">마리<span>.log</span></a>
+    <div class="topnav-links"><a href="index.html">← 홈으로</a></div>
+    <a class="topnav-cta" href="https://github.com" target="_blank">GitHub ↗</a>
+  </nav>
+
+  <div class="wrap">
+
+    <div class="post-banner reveal">
+      <div class="breadcrumb">💻 CS 기초 <b>›</b> <b>하드웨어</b></div>
+      <h1>💻 CS 기초 카테고리</h1>
+      <p class="mood">컴퓨터가 어떻게 돌아가는지 기초부터 정리한다.</p>
+    </div>
+
+    <h2 class="episode-list-title">🆕 최신 글</h2>
+    <a class="episode-row reveal" href="cpu-memory.html">
+      <span class="new-flag">NEW</span>
+      <div class="ep-thumb c1">🧠</div>
+      <div class="ep-info">
+        <span class="ep-num">하드웨어 1편</span>
+        <p class="ep-title">CPU와 메모리</p>
+        <p class="ep-desc">CPU, 메모리, 메모리 주소, SSD/HDD까지 컴퓨터 하드웨어 기초</p>
+      </div>
+      <span class="ep-status done">정리완료</span>
+    </a>
+
+    <h2 class="episode-list-title">📚 전체 글 목록</h2>
+    <a class="episode-row reveal" href="cpu-memory.html">
+      <div class="ep-thumb c1">🧠</div>
+      <div class="ep-info">
+        <span class="ep-num">하드웨어 1편</span>
+        <p class="ep-title">CPU와 메모리</p>
+        <p class="ep-desc">CPU, 메모리, 메모리 주소, SSD/HDD까지 컴퓨터 하드웨어 기초</p>
+      </div>
+      <span class="ep-status done">정리완료</span>
+    </a>
+
+  </div>
+
+  <footer>made with 🩷 by 마리</footer>
+
+  <script>
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealIO.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealIO.observe(el));
+  </script>
+
+</body>
+</html>
