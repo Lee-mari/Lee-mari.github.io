@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>if문 · 마리.log</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="topnav">
+    <a href="index.html" class="brand">마리<span>.log</span></a>
+    <div class="topnav-links"><a href="index.html">← 목록으로</a></div>
+    <a class="topnav-cta" href="https://github.com" target="_blank" rel="noreferrer">GitHub ↗</a>
+  </nav>
+
+  <div class="wrap">
+
+    <div class="post-banner post-banner-if reveal">
+      <div class="breadcrumb">🎮 언리얼 엔진 <b>›</b> C <b>›</b> <b>if문</b></div>
+      <h1>🔀 if문, 조건에 따라 길을 고르는 법</h1>
+      <p class="mood">오늘의 정신상태: 갈림길 앞에서 조건부터 확인하는 개발자 🚦</p>
+    </div>
+
+    <div class="ep-strip">
+      <a href="c-basic-structure.html">1편 · 기본 구조</a>
+      <a href="data-types.html">2편 · 데이터와 자료형</a>
+      <a href="variables.html">3편 · 변수</a>
+      <a href="operators.html">4편 · 연산자</a>
+      <a href="switch.html">5편 · switch문</a>
+      <span class="current">6편 · if문</span>
+    </div>
+
+    <div class="post-layout">
+
+      <aside class="side-nav">
+        <p class="side-nav-title">📂 카테고리</p>
+        <a class="side-nav-item current" href="category-c.html">🎮 언리얼 엔진</a>
+        <p class="side-nav-sub">
+          └ <a href="category-cpp.html" style="color:inherit;">C++</a><br>
+          └ <a href="category-c.html" style="color:inherit;">C (현재)</a><br>
+          └ 블루프린트
+        </p>
+        <a class="side-nav-item" href="category-cs.html">💻 CS 기초</a>
+        <a class="side-nav-item" href="index.html#explore">🎨 웹툰 PD 스터디</a>
+        <a class="side-nav-item" href="index.html#explore">🐙 Git & 협업</a>
+      </aside>
+
+      <article class="article-box">
+
+        <section class="block reveal" id="control">
+          <div class="block-eyebrow"><span class="dot"></span>CONTROL FLOW</div>
+          <h2>제어문이란?</h2>
+          <p><b>제어문</b>은 프로그램의 실행 흐름을 원하는 방향으로 바꾸는 명령문이다. 코드가 위에서 아래로만 실행되는 것이 아니라, 조건에 따라 다른 길로 이동하거나 같은 일을 반복하게 만든다.</p>
+
+          <div class="control-type-grid">
+            <div class="control-type-card"><span class="control-icon">🔀</span><h3>조건문</h3><p>조건에 따라 서로 다른 명령을 실행한다.<br><code>if</code>, <code>switch</code></p></div>
+            <div class="control-type-card"><span class="control-icon">🔁</span><h3>반복문</h3><p>조건이 유지되는 동안 코드를 반복한다.<br><code>for</code>, <code>while</code></p></div>
+            <div class="control-type-card"><span class="control-icon">🛑</span><h3>기타 제어문</h3><p>반복을 멈추거나 다음 흐름으로 건너뛴다.<br><code>break</code>, <code>continue</code></p></div>
+          </div>
+
+          <div class="tip-bubble"><b>이번 글의 주인공 👉</b> 여러 갈림길 중 조건에 맞는 길을 고르는 <code>if문</code>을 집중해서 살펴본다.</div>
+
+          <div class="if-flow-visual" aria-label="제어문과 if문의 흐름">
+            <div class="if-flow-start">프로그램 시작</div>
+            <div class="if-flow-arrow">↓</div>
+            <div class="if-decision-wrap"><div class="if-decision"><span>조건식<br>확인</span></div></div>
+            <div class="if-branch-grid">
+              <div class="if-branch-card true" data-branch="참 / true"><strong>코드 실행</strong><p>조건이 맞으면 블록 안으로 이동</p></div>
+              <div class="if-branch-card false" data-branch="거짓 / false"><strong>다음 코드로 이동</strong><p>조건이 아니면 실행하지 않고 통과</p></div>
+            </div>
+            <div class="if-flow-arrow">↓</div>
+            <div class="if-flow-end">다음 흐름으로</div>
+          </div>
+        </section>
+
+        <section class="block reveal" id="if-only">
+          <div class="block-eyebrow"><span class="dot"></span>IF</div>
+          <h2>if문은 “조건이 참일 때만” 실행한다</h2>
+          <p>if문은 괄호 안의 <b>조건식</b>을 먼저 확인한다. 조건식의 결과가 참이면 중괄호 안의 코드를 실행하고, 거짓이면 블록을 건너뛴다.</p>
+
+          <pre><code>if (조건식)
+{
+    조건식이 참일 때 실행할 문장;
+}</code></pre>
+
+          <div class="if-rule-grid">
+            <div class="if-rule"><span class="rule-symbol">==</span><b>같은지 비교</b><p>대입이 아니라 “두 값이 같은가?”를 묻는다.</p></div>
+            <div class="if-rule"><span class="rule-symbol">&amp;&amp;</span><b>그리고</b><p>두 조건이 모두 참일 때 전체가 참이 된다.</p></div>
+            <div class="if-rule"><span class="rule-symbol">||</span><b>또는</b><p>둘 중 하나라도 참이면 전체가 참이 된다.</p></div>
+          </div>
+
+          <div class="margin-note"><b>여백 메모 ✏️</b> C언어에서는 <code>0</code>이 거짓이고, <code>0이 아닌 값</code>은 참으로 취급된다. 그래서 <code>if (1)</code>은 항상 실행되고, <code>if (0)</code>은 실행되지 않는다.</div>
+        </section>
+
+        <section class="block reveal" id="permission">
+          <div class="block-eyebrow"><span class="dot"></span>DECISION LAB</div>
+          <h2>초콜릿을 먹어도 될까?</h2>
+          <p>엄마가 허락했을 때만 초콜릿을 먹는 상황을 if문으로 표현해보자. <code>mom_says_ok</code>에 저장된 값이 1인지 확인하고, 맞을 때만 실행문을 통과시킨다.</p>
+
+          <pre><code>#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int mom_says_ok = 1; // 1: 허락, 0: 거절
+
+    if (mom_says_ok == 1)
+    {
+        printf("허락했으니, 초콜릿을 먹는다!\n");
+    }
+
+    return 0;
+}</code></pre>
+
+          <table class="data-table">
+            <thead><tr><th>코드</th><th>뜻</th></tr></thead>
+            <tbody>
+              <tr><td><code>int mom_says_ok = 1;</code></td><td>허락 상태를 변수에 저장한다. 1은 허락, 0은 거절이다.</td></tr>
+              <tr><td><code>mom_says_ok == 1</code></td><td>현재 상태가 허락인지 비교한다.</td></tr>
+              <tr><td><code>{ ... }</code></td><td>비교 결과가 참일 때 실행할 블록이다.</td></tr>
+            </tbody>
+          </table>
+
+          <div class="switch-lab if-lab" id="permission-lab">
+            <div class="switch-lab-head"><h3>🍫 PERMISSION / IF LAB</h3><span>조건값을 바꿔 분기 확인</span></div>
+            <div class="switch-lab-screen" data-permission-screen>
+              <span class="screen-label">mom_says_ok</span>
+              <strong data-permission-title>1 → 조건이 참입니다</strong>
+              <p data-permission-output>허락했으니, 초콜릿을 먹는다!</p>
+            </div>
+            <div class="switch-choice-row" role="group" aria-label="엄마의 허락 여부 선택">
+              <button class="switch-choice active" type="button" data-permission-choice="1">1 · 허락</button>
+              <button class="switch-choice" type="button" data-permission-choice="0">0 · 거절</button>
+            </div>
+            <div class="if-lab-path" aria-label="if문 실행 경로">
+              <div class="if-path-node active" data-permission-path="condition"><span>조건 확인</span><strong>== 1 ?</strong></div>
+              <div class="if-path-arrow">➜</div>
+              <div class="if-path-node active" data-permission-path="true"><span>참일 때</span><strong>먹는다</strong></div>
+              <div class="if-path-arrow">➜</div>
+              <div class="if-path-node" data-permission-path="false"><span>거짓일 때</span><strong>통과</strong></div>
+            </div>
+            <p class="if-lab-caption" data-permission-caption>if 블록 안의 실행문이 작동합니다.</p>
+          </div>
+
+          <figure class="figure switch-figure">
+            <img src="images/if-flow.png" alt="엄마가 허락하면 초콜릿을 먹고, 거짓이면 종료하는 if문 흐름도">
+            <figcaption class="figure-caption">그림 1. 조건이 참일 때만 실행문으로 들어가는 if문의 기본 흐름</figcaption>
+          </figure>
+        </section>
+
+        <section class="block reveal" id="else">
+          <div class="block-eyebrow"><span class="dot"></span>ELSE</div>
+          <h2>허락하지 않았을 때는 else</h2>
+          <p>if 조건이 거짓일 때도 다른 행동을 실행하고 싶다면 <code>else</code> 블록을 붙인다. if와 else 중 <b>둘 중 하나만</b> 실행된다는 것이 핵심이다.</p>
+
+          <pre><code>#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int mom_says_ok = 0;
+
+    if (mom_says_ok == 1)
+    {
+        printf("허락했으니, 초콜릿을 먹는다!\n");
+    }
+    else
+    {
+        printf("허락하지 않았으니, 초콜릿을 먹지 않는다!\n");
+    }
+
+    return 0;
+}</code></pre>
+
+          <div class="if-compare-grid">
+            <div class="if-compare-card if-good"><h3>조건이 참이면</h3><p><code>if</code> 블록을 실행하고 <code>else</code>는 건너뛴다.</p></div>
+            <div class="if-compare-card if-switch"><h3>조건이 거짓이면</h3><p><code>if</code> 블록은 건너뛰고 <code>else</code> 블록을 실행한다.</p></div>
+          </div>
+
+          <div class="tip-bubble"><b>정리하면 👉</b> if는 “조건이 맞을 때”, else는 “그렇지 않을 때”의 행동을 담당한다.</div>
+        </section>
+
+        <section class="block reveal" id="else-if">
+          <div class="block-eyebrow"><span class="dot"></span>ELSE IF</div>
+          <h2>조건이 여러 단계라면 else if</h2>
+          <p>조건을 한 번만 확인하는 것이 아니라, 여러 기준으로 나눠야 할 때는 <code>else if</code>를 이어 붙인다. 위에서부터 차례대로 검사하며, 처음으로 참이 된 블록 하나만 실행한다.</p>
+
+          <pre><code>#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int age;
+
+    printf("당신의 나이는? : ");
+    scanf("%d", &amp;age);
+
+    if (age &lt; 10)
+    {
+        printf("당신은 어린이입니다. 초콜릿을 먹을 수 없어요!\n");
+    }
+    else if (age &lt; 20)
+    {
+        printf("당신은 청소년입니다. 초콜릿을 먹을 수 있어요!\n");
+    }
+    else
+    {
+        printf("당신은 성인입니다. 초콜릿을 더 많이 먹을 수 있어요!\n");
+    }
+
+    return 0;
+}</code></pre>
+
+          <div class="if-age-panel" id="age-lab">
+            <div class="if-age-panel-head"><h3>🎂 AGE CHECK / IF CHAIN</h3><span>위에서부터 조건을 순서대로 검사합니다</span></div>
+            <div class="if-age-buttons" role="group" aria-label="나이 선택">
+              <button class="if-age-button active" type="button" data-age-choice="5">5살</button>
+              <button class="if-age-button" type="button" data-age-choice="14">14살</button>
+              <button class="if-age-button" type="button" data-age-choice="25">25살</button>
+              <button class="if-age-button" type="button" data-age-choice="70">70살</button>
+            </div>
+            <div class="if-age-result" data-age-result>
+              <div class="if-age-number" data-age-number>5</div>
+              <div><strong data-age-title>어린이 판정</strong><p data-age-output>age &lt; 10 → 첫 번째 if 조건이 참이므로 이 블록을 실행합니다.</p></div>
+            </div>
+          </div>
+
+          <figure class="figure switch-figure">
+            <img src="images/if-example.gif" alt="나이를 입력하면 if와 else if, else 조건에 따라 결과를 출력하는 콘솔 실행 GIF">
+            <figcaption class="figure-caption">그림 2. 나이 입력값에 따라 if → else if → else 중 하나가 실행되는 실제 실행 예시</figcaption>
+          </figure>
+
+          <div class="margin-note"><b>왜 마지막 else에는 조건이 없을까? ✏️</b> 위의 if와 else if가 모두 거짓일 때 남은 모든 경우를 처리하기 때문이다. 이미 앞의 조건을 통과하지 못했다는 정보가 있으므로 별도의 조건을 다시 붙일 필요가 없다.</div>
+        </section>
+
+        <section class="block reveal" id="truth">
+          <div class="block-eyebrow"><span class="dot"></span>TRUTH CHECK</div>
+          <h2>조건식의 결과는 참 또는 거짓</h2>
+          <p>비교 연산자는 조건식의 결과로 참과 거짓을 만든다. 아래처럼 조건식이 어떤 값을 내놓는지 확인하면 if문을 읽기가 쉬워진다.</p>
+
+          <table class="if-truth-table">
+            <thead><tr><th>조건식</th><th>결과</th><th>if 블록</th></tr></thead>
+            <tbody>
+              <tr><td><code>5 &gt; 3</code></td><td class="yes">true</td><td>실행</td></tr>
+              <tr><td><code>5 == 3</code></td><td class="no">false</td><td>건너뜀</td></tr>
+              <tr><td><code>age &lt; 10 &amp;&amp; age &gt; 0</code></td><td>age에 따라 결정</td><td>두 조건이 모두 참일 때 실행</td></tr>
+            </tbody>
+          </table>
+
+          <div class="margin-note"><b>주의! <code>=</code>와 <code>==</code>는 다르다 ✏️</b> <code>=</code>는 값을 저장하는 대입 연산자이고, <code>==</code>는 두 값이 같은지 비교하는 연산자다. 조건식에서는 비교 의도를 분명히 하기 위해 <code>==</code>를 사용한다.</div>
+        </section>
+
+        <section class="block reveal" id="compare">
+          <div class="block-eyebrow"><span class="dot"></span>IF VS SWITCH</div>
+          <h2>if문과 switch문은 언제 나눠 쓸까?</h2>
+          <p>두 조건문 모두 실행 흐름을 나누지만, 잘 어울리는 문제의 모양이 다르다.</p>
+
+          <div class="if-compare-grid">
+            <div class="if-compare-card if-good"><h3>🔀 if문이 잘하는 것</h3><p>“20살 이상”, “점수가 90점보다 높고 아이템이 있다”처럼 <b>범위·복합 조건·논리식</b>을 표현한다.</p><pre style="margin:11px 0 0; box-shadow:none;"><code>if (age &gt;= 20)
+{
+    printf("성인");
+}</code></pre></div>
+            <div class="if-compare-card if-switch"><h3>🎛️ switch문이 잘하는 것</h3><p>“메뉴 번호가 1인지 2인지”처럼 <b>하나의 값이 특정 선택지와 정확히 일치</b>하는 상황을 표현한다.</p><pre style="margin:11px 0 0; box-shadow:none;"><code>switch (menu)
+{
+    case 1: ...
+}</code></pre></div>
+          </div>
+
+          <div class="tip-bubble"><b>판단 기준 👉</b> 조건이 범위나 논리식이면 if문, 단순한 번호·상태 선택이면 switch문을 먼저 떠올리면 된다.</div>
+        </section>
+
+        <section class="block reveal" id="summary">
+          <div class="block-eyebrow"><span class="dot"></span>CHECKPOINT</div>
+          <h2>if문 핵심만 다시 체크하기</h2>
+          <div class="switch-summary">
+            <h3>🚦 스테이지 클리어 조건</h3>
+            <ul>
+              <li>제어문은 프로그램의 실행 흐름을 조건·반복·분기 방식으로 바꾼다.</li>
+              <li><code>if</code>는 조건이 참일 때만 블록 안의 코드를 실행한다.</li>
+              <li><code>else</code>는 if 조건이 거짓일 때의 기본 행동을 담당한다.</li>
+              <li><code>else if</code>는 여러 조건을 위에서부터 순서대로 검사한다.</li>
+              <li>범위나 복합 조건은 if문, 정확한 선택지 분기는 switch문이 읽기 좋다.</li>
+            </ul>
+          </div>
+        </section>
+
+        <div class="next-ep reveal">
+          <span class="preview-ribbon">다음 퀘스트</span>
+          <h3>while문과 반복되는 세계</h3>
+          <p>조건이 참인 동안 같은 코드를 반복 실행하는 while문으로 흐름 제어를 한 단계 더 확장해본다.</p>
+        </div>
+
+      </article>
+
+      <aside class="toc-detailed">
+        <p class="toc-detailed-title">📖 이 글의 목차</p>
+        <a href="#control" data-toc><span class="n">00</span> 제어문이란?</a>
+        <a href="#if-only" data-toc><span class="n">01</span> if문</a>
+        <a href="#permission" data-toc><span class="n">02</span> 허락 조건</a>
+        <a href="#else" data-toc><span class="n">03</span> else</a>
+        <a href="#else-if" data-toc><span class="n">04</span> else if</a>
+        <a href="#truth" data-toc><span class="n">05</span> 참과 거짓</a>
+        <a href="#compare" data-toc><span class="n">06</span> if vs switch</a>
+        <a href="#summary" data-toc><span class="n">07</span> 핵심 정리</a>
+      </aside>
+
+    </div>
+
+    <div class="more-posts">
+      <p class="more-posts-title">📚 C 기초 다른 글</p>
+      <div class="ep-strip">
+        <a href="c-basic-structure.html">1편 · 기본 구조</a>
+        <a href="data-types.html">2편 · 데이터와 자료형</a>
+        <a href="variables.html">3편 · 변수</a>
+        <a href="operators.html">4편 · 연산자</a>
+        <a href="switch.html">5편 · switch문</a>
+        <span class="current">6편 · if문</span>
+        <a href="category-c.html">전체 목록 →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>6편 클리어! 이제 조건에 따라 길을 고를 수 있다 🎉</footer>
+
+  <script>
+    const links = document.querySelectorAll('[data-toc]');
+    const sections = Array.from(links).map(link => document.querySelector(link.getAttribute('href')));
+    const tocObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = '#' + entry.target.id;
+          links.forEach(link => link.classList.toggle('active', link.getAttribute('href') === id));
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(section => section && tocObserver.observe(section));
+
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealElements.forEach(element => revealObserver.observe(element));
+
+    const permissionData = {
+      1: { title: '1 → 조건이 참입니다', output: '허락했으니, 초콜릿을 먹는다!', caption: 'if 블록 안의 실행문이 작동합니다.', activePath: 'true' },
+      0: { title: '0 → 조건이 거짓입니다', output: '허락하지 않았으니, 초콜릿을 먹지 않습니다.', caption: '실행할 if 블록이 없어 다음 코드로 통과합니다.', activePath: 'false' }
+    };
+    const permissionScreen = document.querySelector('[data-permission-screen]');
+    const permissionTitle = document.querySelector('[data-permission-title]');
+    const permissionOutput = document.querySelector('[data-permission-output]');
+    const permissionCaption = document.querySelector('[data-permission-caption]');
+    const permissionButtons = document.querySelectorAll('[data-permission-choice]');
+    const permissionPaths = document.querySelectorAll('[data-permission-path]');
+    permissionButtons.forEach(button => button.addEventListener('click', () => {
+      const result = permissionData[button.dataset.permissionChoice];
+      permissionButtons.forEach(item => item.classList.toggle('active', item === button));
+      permissionPaths.forEach(item => item.classList.toggle('active', item.dataset.permissionPath === 'condition' || item.dataset.permissionPath === result.activePath));
+      permissionTitle.textContent = result.title;
+      permissionOutput.textContent = result.output;
+      permissionCaption.textContent = result.caption;
+      permissionScreen.classList.remove('flash');
+      void permissionScreen.offsetWidth;
+      permissionScreen.classList.add('flash');
+    }));
+
+    const ageData = {
+      5: { title: '어린이 판정', output: 'age < 10 → 첫 번째 if 조건이 참이므로 이 블록을 실행합니다.' },
+      14: { title: '청소년 판정', output: 'age < 10은 거짓, age < 20은 참 → else if 블록을 실행합니다.' },
+      25: { title: '성인 판정', output: '앞의 두 조건이 모두 거짓 → 마지막 else 블록을 실행합니다.' },
+      70: { title: '성인 판정', output: '앞의 두 조건이 모두 거짓 → 마지막 else 블록을 실행합니다.' }
+    };
+    const ageResult = document.querySelector('[data-age-result]');
+    const ageNumber = document.querySelector('[data-age-number]');
+    const ageTitle = document.querySelector('[data-age-title]');
+    const ageOutput = document.querySelector('[data-age-output]');
+    const ageButtons = document.querySelectorAll('[data-age-choice]');
+    ageButtons.forEach(button => button.addEventListener('click', () => {
+      const age = button.dataset.ageChoice;
+      const result = ageData[age];
+      ageButtons.forEach(item => item.classList.toggle('active', item === button));
+      ageNumber.textContent = age;
+      ageTitle.textContent = result.title;
+      ageOutput.textContent = result.output;
+      ageResult.classList.remove('flash');
+      void ageResult.offsetWidth;
+      ageResult.classList.add('flash');
+    }));
+  </script>
+
+</body>
+</html>
