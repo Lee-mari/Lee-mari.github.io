@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>switch문 · 마리.log</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="topnav">
+    <a href="index.html" class="brand">마리<span>.log</span></a>
+    <div class="topnav-links"><a href="index.html">← 목록으로</a></div>
+    <a class="topnav-cta" href="https://github.com" target="_blank" rel="noreferrer">GitHub ↗</a>
+  </nav>
+
+  <div class="wrap">
+
+    <div class="post-banner post-banner-switch reveal">
+      <div class="breadcrumb">🎮 언리얼 엔진 <b>›</b> C <b>›</b> <b>switch문</b></div>
+      <h1>🎛️ switch문, 선택지를 정리하는 법</h1>
+      <p class="mood">오늘의 정신상태: 갈림길이 많아도 하나씩 고르면 된다 🗺️</p>
+    </div>
+
+    <div class="ep-strip">
+      <a href="c-basic-structure.html">1편 · 기본 구조</a>
+      <a href="data-types.html">2편 · 데이터와 자료형</a>
+      <a href="variables.html">3편 · 변수</a>
+      <a href="operators.html">4편 · 연산자</a>
+      <span class="current">5편 · switch문</span>
+    </div>
+
+    <div class="post-layout">
+
+      <aside class="side-nav">
+        <p class="side-nav-title">📂 카테고리</p>
+        <a class="side-nav-item current" href="category-c.html">🎮 언리얼 엔진</a>
+        <p class="side-nav-sub">
+          └ <a href="category-cpp.html" style="color:inherit;">C++</a><br>
+          └ <a href="category-c.html" style="color:inherit;">C (현재)</a><br>
+          └ 블루프린트
+        </p>
+        <a class="side-nav-item" href="category-cs.html">💻 CS 기초</a>
+        <a class="side-nav-item" href="index.html#explore">🎨 웹툰 PD 스터디</a>
+        <a class="side-nav-item" href="index.html#explore">🐙 Git & 협업</a>
+      </aside>
+
+      <article class="article-box">
+
+        <section class="block reveal" id="intro">
+          <div class="block-eyebrow"><span class="dot"></span>DECISION</div>
+          <h2>switch는 하나의 값을 여러 선택지와 비교한다</h2>
+          <p><b>switch문</b>은 조건 값이 여러 <code>case</code> 중 하나와 일치할 때, 그 case에 연결된 실행문을 선택하는 조건문이다.</p>
+          <p>조건이 두세 개 정도라면 <code>if</code>문으로도 충분하지만, 메뉴 번호·직업 번호·게임 상태처럼 <b>하나의 값이 여러 선택지 중 어디에 해당하는지</b> 판단할 때는 switch문이 구조를 훨씬 선명하게 보여준다.</p>
+
+          <div class="switch-route" aria-label="switch문의 선택 흐름">
+            <div class="switch-route-node"><span>사용자 입력</span><strong>job = 2</strong><small>선택 값 하나</small></div>
+            <div class="switch-route-arrow">➜</div>
+            <div class="switch-route-node switch-route-core"><span>분기 장치</span><strong>switch(job)</strong><small>case와 비교</small></div>
+            <div class="switch-route-arrow">➜</div>
+            <div class="switch-route-node"><span>실행 결과</span><strong>마법사 선택</strong><small>해당 case만 실행</small></div>
+          </div>
+
+          <div class="switch-fact-grid">
+            <div class="switch-fact"><span class="fact-icon">🎯</span><b>값을 한 번 평가</b>switch 뒤의 조건 값을 읽고 각 case와 비교한다.</div>
+            <div class="switch-fact"><span class="fact-icon">🚪</span><b>case로 입장</b>값이 일치하는 case의 실행문부터 시작한다.</div>
+            <div class="switch-fact"><span class="fact-icon">🛑</span><b>break로 퇴장</b>선택한 case를 끝낸 뒤 switch문을 빠져나온다.</div>
+          </div>
+
+          <div class="tip-bubble"><b>한 줄 정리 👉</b> switch문은 “이 값이 무엇인지”에 따라 여러 행동 중 하나를 고르는 선택형 조건문이다.</div>
+        </section>
+
+        <section class="block reveal" id="syntax">
+          <div class="block-eyebrow"><span class="dot"></span>SYNTAX</div>
+          <h2>기본 문법의 뼈대</h2>
+          <p><code>switch</code> 뒤의 조건 값은 한 번 평가되고, 각 <code>case</code>의 값과 차례로 비교된다. 일치하는 case가 없으면 <code>default</code>로 이동한다.</p>
+
+          <div class="switch-syntax-grid">
+            <pre><code>switch (조건 값) {
+    case 값1:
+        실행할 문장;
+        break;
+
+    case 값2:
+        실행할 문장;
+        break;
+
+    default:
+        일치하는 값이 없을 때 실행할 문장;
+        break;
+}</code></pre>
+
+            <div class="switch-anatomy">
+              <div class="switch-anatomy-card"><span class="anatomy-key">switch</span><p>비교할 조건 값을 지정한다.</p></div>
+              <div class="switch-anatomy-card"><span class="anatomy-key">case</span><p>조건 값과 비교할 선택지를 만든다.</p></div>
+              <div class="switch-anatomy-card"><span class="anatomy-key">break</span><p>현재 switch문을 즉시 종료한다.</p></div>
+              <div class="switch-anatomy-card"><span class="anatomy-key">default</span><p>어떤 case와도 맞지 않을 때 실행한다.</p></div>
+            </div>
+          </div>
+
+          <div class="margin-note"><b>여백 메모 ✏️</b> <code>case</code> 뒤의 값은 실행 중에 변하는 변수가 아니라, 비교 기준이 되는 정수 상수여야 한다. “case마다 서로 다른 방”이 있다고 생각하면 이해하기 쉽다.</div>
+        </section>
+
+        <section class="block reveal" id="vending">
+          <div class="block-eyebrow"><span class="dot"></span>PLAYABLE</div>
+          <h2>자판기로 배우는 switch문</h2>
+          <p>자판기에 메뉴 번호를 입력하면, switch문이 그 번호에 해당하는 음료를 찾아 실행한다. 아래 버튼을 직접 눌러 흐름을 확인해보자.</p>
+
+          <div class="switch-lab" id="vending-lab">
+            <div class="switch-lab-head"><h3>🧃 VENDING MACHINE / SWITCH LAB</h3><span>입력값 하나 → case 하나</span></div>
+            <div class="switch-lab-screen" data-vending-screen>
+              <span class="screen-label">INPUT</span>
+              <strong data-vending-title>메뉴 번호를 선택하세요</strong>
+              <p data-vending-output>1~3 중 하나를 고르면 해당 case가 실행됩니다.</p>
+            </div>
+            <div class="switch-choice-row" role="group" aria-label="자판기 메뉴 선택">
+              <button class="switch-choice" type="button" data-vending-choice="1">1 · 초콜릿</button>
+              <button class="switch-choice" type="button" data-vending-choice="2">2 · 바나나</button>
+              <button class="switch-choice" type="button" data-vending-choice="3">3 · 딸기</button>
+              <button class="switch-choice" type="button" data-vending-choice="9">9 · 잘못된 번호</button>
+            </div>
+            <div class="switch-case-map" aria-label="자판기 case 목록">
+              <div class="map-case" data-vending-case="1">case 1</div>
+              <div class="map-case" data-vending-case="2">case 2</div>
+              <div class="map-case" data-vending-case="3">case 3</div>
+              <div class="map-case" data-vending-case="default">default</div>
+            </div>
+            <a class="switch-lab-link" href="https://c-switch-vending-game.mari1219cute.chatgpt.site/" target="_blank" rel="noreferrer">완성된 자판기 게임 열어보기 ↗</a>
+          </div>
+
+          <figure class="figure switch-figure">
+            <img src="images/switch-vending-flow.png" alt="버튼 입력부터 switch, case, 잔액 확인과 break까지 이어지는 자판기 흐름도">
+            <figcaption class="figure-caption">그림 1. 입력값이 case를 찾고, 잔액 확인 뒤 break로 switch문을 빠져나오는 흐름</figcaption>
+          </figure>
+        </section>
+
+        <section class="block reveal" id="case-default">
+          <div class="block-eyebrow"><span class="dot"></span>BRANCH</div>
+          <h2>case와 default의 역할</h2>
+          <p><code>case</code>는 “이 값일 때”를 나타내는 정확한 선택지이고, <code>default</code>는 예상하지 못한 입력을 처리하는 안전망이다.</p>
+
+          <div class="switch-case-grid">
+            <div class="switch-case-card case"><span class="case-label">case 2:</span><h3>정확히 일치할 때</h3><p>조건 값이 2라면 case 2의 실행문으로 이동한다. <code>case</code>는 범위가 아니라 하나의 값을 의미한다.</p></div>
+            <div class="switch-case-card default"><span class="case-label">default:</span><h3>어느 case도 아닐 때</h3><p>1, 2, 3처럼 준비한 선택지 외의 값이 들어오면 잘못된 입력이나 기본 행동을 처리한다.</p></div>
+          </div>
+
+          <figure class="figure switch-figure">
+            <img src="images/switch-default-flow.png" alt="초콜릿 입력이 여러 조건 중 일치하는 조건으로 이동하는 흐름 그림">
+            <figcaption class="figure-caption">그림 2. 준비한 case와 일치하지 않으면 default에서 예외 입력을 처리한다</figcaption>
+          </figure>
+
+          <div class="margin-note"><b>실전 체크 ✏️</b> 사용자가 입력하는 값은 언제나 예상 범위를 벗어날 수 있다. 메뉴나 직업 선택처럼 입력값을 받는 코드에는 <code>default</code>를 두고 안내 메시지를 출력하는 편이 안전하다.</div>
+        </section>
+
+        <section class="block reveal" id="break">
+          <div class="block-eyebrow"><span class="dot"></span>EXIT</div>
+          <h2>break가 없으면 왜 여러 case가 실행될까?</h2>
+          <p>switch문은 일치하는 case를 찾은 뒤, 자동으로 그 case만 실행하고 끝내지 않는다. <code>break</code>를 만날 때까지 아래쪽 실행문을 계속 이어서 실행한다. 이 동작을 <b>fall-through</b>라고 한다.</p>
+
+          <div class="fallthrough-panel">
+            <div class="fallthrough-steps">
+              <span class="fallthrough-step" data-fallthrough-step="1">case 1</span><span class="fallthrough-arrow">→</span>
+              <span class="fallthrough-step" data-fallthrough-step="2">case 2</span><span class="fallthrough-arrow">→</span>
+              <span class="fallthrough-step" data-fallthrough-step="3">case 3</span><span class="fallthrough-arrow">→</span>
+              <span class="fallthrough-step" data-fallthrough-step="end">break</span>
+            </div>
+            <p class="fallthrough-result" data-fallthrough-output>아래 버튼을 눌러 case 1에서 break가 없을 때의 흐름을 확인하세요.</p>
+            <button class="fallthrough-button" type="button" data-fallthrough-button>fall-through 재생 ▶</button>
+          </div>
+
+          <div class="compare">
+            <div class="compare-box bad"><span class="label">⚠️ break가 없는 경우</span><pre style="margin:8px 0 0; box-shadow:none;"><code>case 1:
+    printf("초콜릿");
+case 2:
+    printf("바나나");</code></pre><p>case 1을 골라도 case 2까지 이어서 실행된다.</p></div>
+            <div class="compare-box good"><span class="label">✅ 일반적인 경우</span><pre style="margin:8px 0 0; box-shadow:none;"><code>case 1:
+    printf("초콜릿");
+    break;</code></pre><p>선택한 case의 실행이 끝나면 switch문을 종료한다.</p></div>
+          </div>
+        </section>
+
+        <section class="block reveal" id="types">
+          <div class="block-eyebrow"><span class="dot"></span>BOUNDARY</div>
+          <h2>switch로 처리할 수 있는 값과 없는 값</h2>
+          <p>C언어에서 switch의 조건 값은 정수형 또는 열거형이어야 한다. <code>char</code>, <code>short</code>, <code>int</code> 같은 정수 계열과 <code>enum</code>은 사용할 수 있지만, <code>float</code>·<code>double</code> 같은 실수형과 문자열은 직접 비교할 수 없다.</p>
+
+          <div class="switch-compare-grid">
+            <div class="switch-compare-card good"><h3>✅ switch가 잘 맞는 경우</h3><ul><li>메뉴 번호처럼 정확한 정수 선택</li><li>직업·아이템·게임 상태 코드</li><li>문자 하나로 표현되는 명령</li><li>enum으로 정의한 상태값</li></ul></div>
+            <div class="switch-compare-card bad"><h3>⚠️ if문이 더 자연스러운 경우</h3><ul><li>90점 이상처럼 범위를 비교할 때</li><li>여러 조건을 동시에 조합할 때</li><li>문자열 내용을 비교할 때</li><li>실수 값의 구간을 나눌 때</li></ul></div>
+          </div>
+
+          <figure class="figure switch-figure tall">
+            <img src="images/switch-string-limit.png" alt="문자열 초콜릿 입력은 C언어 switch의 case 문자열과 직접 비교할 수 없다는 설명 그림">
+            <figcaption class="figure-caption">그림 3. 문자열은 switch의 case 값으로 직접 사용할 수 없으므로 문자열 비교에는 별도의 방법이 필요하다</figcaption>
+          </figure>
+
+          <div class="switch-code-note">문자열을 비교해야 한다면 C에서는 <code>strcmp()</code>와 <code>if</code>문을 조합하는 방식이 일반적이다. 범위 조건 역시 switch가 아니라 if문으로 표현하는 편이 읽기 쉽다.</div>
+        </section>
+
+        <section class="block reveal" id="job">
+          <div class="block-eyebrow"><span class="dot"></span>GAME LOGIC</div>
+          <h2>게임 직업 선택에 적용해보기</h2>
+          <p>게임을 시작할 때 직업 번호를 입력받고, 직업별 HP를 정하는 상황을 switch문으로 만들 수 있다. 선택지와 결과가 일대일로 대응하기 때문에 switch가 잘 어울리는 예제다.</p>
+
+          <figure class="figure switch-figure tall">
+            <img src="images/switch-job-flow.png" alt="직업 번호에 따라 전사, 마법사, 궁수, default 결과로 나뉘는 switch 흐름도">
+            <figcaption class="figure-caption">그림 4. 직업 번호 하나가 각 case의 캐릭터와 HP 결과로 연결되는 게임 로직</figcaption>
+          </figure>
+
+          <pre><code>#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int job;
+    int hp = 0;
+
+    printf("직업을 선택하세요.\n");
+    printf("1. 전사  2. 마법사  3. 궁수\n");
+    printf("입력: ");
+    scanf("%d", &amp;job);
+
+    switch (job)
+    {
+        case 1:
+            hp = 150;
+            printf("전사를 선택했습니다. HP: %d\n", hp);
+            break;
+        case 2:
+            hp = 80;
+            printf("마법사를 선택했습니다. HP: %d\n", hp);
+            break;
+        case 3:
+            hp = 100;
+            printf("궁수를 선택했습니다. HP: %d\n", hp);
+            break;
+        default:
+            printf("잘못된 입력입니다.\n");
+            break;
+    }
+
+    return 0;
+}</code></pre>
+
+          <div class="switch-lab job-demo" id="job-lab">
+            <div class="switch-lab-head"><h3>🎮 JOB SELECT / MINI DEMO</h3><span>직업을 선택하면 switch 결과가 바뀝니다</span></div>
+            <div class="switch-lab-screen" data-job-screen>
+              <span class="screen-label">JOB INPUT</span>
+              <strong data-job-title>직업 번호를 선택하세요</strong>
+              <p data-job-output>case 1, 2, 3 중 하나가 실행됩니다.</p>
+            </div>
+            <div class="switch-choice-row" role="group" aria-label="직업 선택">
+              <button class="switch-choice" type="button" data-job-choice="1">1 · 전사</button>
+              <button class="switch-choice" type="button" data-job-choice="2">2 · 마법사</button>
+              <button class="switch-choice" type="button" data-job-choice="3">3 · 궁수</button>
+              <button class="switch-choice" type="button" data-job-choice="9">9 · 잘못된 입력</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="block reveal" id="summary">
+          <div class="block-eyebrow"><span class="dot"></span>CHECKPOINT</div>
+          <h2>switch문 핵심만 다시 체크하기</h2>
+          <div class="switch-summary">
+            <h3>🎮 스테이지 클리어 조건</h3>
+            <ul>
+              <li><code>switch</code>는 하나의 조건 값을 여러 선택지와 비교한다.</li>
+              <li><code>case</code>는 정확히 일치하는 값에 연결된다.</li>
+              <li><code>break</code>가 있어야 선택한 case 뒤에서 실행을 멈춘다.</li>
+              <li><code>default</code>는 일치하는 case가 없을 때의 예외 처리다.</li>
+              <li>범위·복합 조건·문자열 비교에는 <code>if</code>문이 더 적합하다.</li>
+            </ul>
+          </div>
+        </section>
+
+        <div class="next-ep reveal">
+          <span class="preview-ribbon">다음 퀘스트</span>
+          <h3>조건문 실전 미니 프로그램</h3>
+          <p>변수·자료형·연산자·조건문을 모두 사용해서, 실제 게임 로직처럼 동작하는 프로그램을 만들어본다.</p>
+        </div>
+
+      </article>
+
+      <aside class="toc-detailed">
+        <p class="toc-detailed-title">📖 이 글의 목차</p>
+        <a href="#intro" data-toc><span class="n">00</span> switch란?</a>
+        <a href="#syntax" data-toc><span class="n">01</span> 기본 문법</a>
+        <a href="#vending" data-toc><span class="n">02</span> 자판기 실습</a>
+        <a href="#case-default" data-toc><span class="n">03</span> case와 default</a>
+        <a href="#break" data-toc><span class="n">04</span> break와 fall-through</a>
+        <a href="#types" data-toc><span class="n">05</span> 사용 가능한 값</a>
+        <a href="#job" data-toc><span class="n">06</span> 게임 직업 선택</a>
+        <a href="#summary" data-toc><span class="n">07</span> 핵심 정리</a>
+      </aside>
+
+    </div>
+
+    <div class="more-posts">
+      <p class="more-posts-title">📚 C 기초 다른 글</p>
+      <div class="ep-strip">
+        <a href="c-basic-structure.html">1편 · 기본 구조</a>
+        <a href="data-types.html">2편 · 데이터와 자료형</a>
+        <a href="variables.html">3편 · 변수</a>
+        <a href="operators.html">4편 · 연산자</a>
+        <span class="current">5편 · switch문</span>
+        <a href="category-c.html">전체 목록 →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>5편 클리어! 이제 선택지가 많아도 분기할 수 있다 🎉</footer>
+
+  <script>
+    const links = document.querySelectorAll('[data-toc]');
+    const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href')));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = '#' + entry.target.id;
+          links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(section => section && io.observe(section));
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealIO = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealIO.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(element => revealIO.observe(element));
+
+    const vendingData = {
+      1: { title: 'case 1 → 초콜릿 지급', output: '초콜릿을 선택했습니다. break로 자판기 흐름을 종료합니다.', map: '1' },
+      2: { title: 'case 2 → 바나나 지급', output: '바나나를 선택했습니다. break로 자판기 흐름을 종료합니다.', map: '2' },
+      3: { title: 'case 3 → 딸기 지급', output: '딸기를 선택했습니다. break로 자판기 흐름을 종료합니다.', map: '3' },
+      9: { title: 'default → 선택지 없음', output: '잘못된 메뉴입니다. 준비된 case가 없어 default로 이동했습니다.', map: 'default' }
+    };
+    const vendingScreen = document.querySelector('[data-vending-screen]');
+    const vendingTitle = document.querySelector('[data-vending-title]');
+    const vendingOutput = document.querySelector('[data-vending-output]');
+    const vendingButtons = document.querySelectorAll('[data-vending-choice]');
+    const vendingCases = document.querySelectorAll('[data-vending-case]');
+    vendingButtons.forEach(button => button.addEventListener('click', () => {
+      const result = vendingData[button.dataset.vendingChoice];
+      vendingButtons.forEach(item => item.classList.toggle('active', item === button));
+      vendingCases.forEach(item => item.classList.toggle('active', item.dataset.vendingCase === result.map));
+      vendingTitle.textContent = result.title;
+      vendingOutput.textContent = result.output;
+      vendingScreen.classList.remove('flash');
+      void vendingScreen.offsetWidth;
+      vendingScreen.classList.add('flash');
+    }));
+
+    const jobData = {
+      1: { title: '전사를 선택했습니다. HP: 150', output: 'case 1 실행 → 튼튼한 근접 전사 캐릭터를 생성합니다.' },
+      2: { title: '마법사를 선택했습니다. HP: 80', output: 'case 2 실행 → 마법 공격 중심의 캐릭터를 생성합니다.' },
+      3: { title: '궁수를 선택했습니다. HP: 100', output: 'case 3 실행 → 원거리 공격 중심의 캐릭터를 생성합니다.' },
+      9: { title: '잘못된 입력입니다.', output: 'default 실행 → 1, 2, 3 중 하나를 다시 선택해야 합니다.' }
+    };
+    const jobScreen = document.querySelector('[data-job-screen]');
+    const jobTitle = document.querySelector('[data-job-title]');
+    const jobOutput = document.querySelector('[data-job-output]');
+    const jobButtons = document.querySelectorAll('[data-job-choice]');
+    jobButtons.forEach(button => button.addEventListener('click', () => {
+      const result = jobData[button.dataset.jobChoice];
+      jobButtons.forEach(item => item.classList.toggle('active', item === button));
+      jobTitle.textContent = result.title;
+      jobOutput.textContent = result.output;
+      jobScreen.classList.remove('flash');
+      void jobScreen.offsetWidth;
+      jobScreen.classList.add('flash');
+    }));
+
+    const fallthroughButton = document.querySelector('[data-fallthrough-button]');
+    const fallthroughOutput = document.querySelector('[data-fallthrough-output]');
+    const fallthroughSteps = document.querySelectorAll('[data-fallthrough-step]');
+    fallthroughButton.addEventListener('click', () => {
+      fallthroughSteps.forEach(step => step.classList.remove('hit'));
+      fallthroughOutput.textContent = 'case 1 실행 → break 없음 → case 2 → case 3까지 계속 내려갑니다.';
+      fallthroughSteps.forEach((step, index) => {
+        setTimeout(() => step.classList.add('hit'), index * 240);
+      });
+    });
+  </script>
+
+</body>
+</html>
