@@ -994,3 +994,86 @@ a, button, summary, .toc a, .episode-row, .dot, .carousel-arrow {
 @media (prefers-reduced-motion: reduce) {
   .if-flow-arrow, .if-branch-card.active, .if-age-result.flash { animation: none; }
 }
+
+/* =========================================================
+   while문 글 전용 컴포넌트
+   ========================================================= */
+.post-banner-while {
+  background: linear-gradient(115deg, #22A67E 0%, var(--mint) 46%, var(--sky) 100%);
+}
+
+.while-loop-map { display: grid; grid-template-columns: minmax(110px,1fr) 34px minmax(150px,1.2fr) 34px minmax(110px,1fr); gap: 8px; align-items: center; margin: 24px 0; }
+.while-loop-node { min-height: 82px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: 2.5px solid var(--ink); border-radius: 15px; background: var(--card); padding: 10px; box-shadow: 4px 4px 0 var(--shadow); font-size: 12.5px; }
+.while-loop-node strong { display: block; font-family: 'JetBrains Mono', monospace; color: var(--grape-deep); font-size: 15px; margin-bottom: 3px; }
+.while-loop-node.loop-core { background: linear-gradient(135deg, var(--mint), var(--sky)); color: #fff; }
+.while-loop-node.loop-core strong { color: #fff; }
+.while-loop-arrow { color: var(--mint); font-size: 23px; text-align: center; font-family: 'Jua', sans-serif; animation: while-arrow-pulse 1.6s ease-in-out infinite; }
+
+.while-syntax-grid { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(230px,.9fr); gap: 18px; align-items: start; }
+.while-step-list { display: flex; flex-direction: column; gap: 9px; }
+.while-step { display: grid; grid-template-columns: 31px 1fr; gap: 10px; align-items: start; border: 2.5px solid var(--ink); border-radius: 13px; background: var(--card); padding: 11px 13px; box-shadow: 3px 3px 0 var(--shadow); }
+.while-step .step-number { width: 27px; height: 27px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--mint); color: #fff; font-family: 'Jua', sans-serif; }
+.while-step b { font-family: 'Jua', sans-serif; font-size: 13.5px; }
+.while-step p { margin: 2px 0 0; color: var(--ink-soft); font-size: 12.5px; }
+
+.while-counter-lab { background: linear-gradient(135deg, #1D2830, #254A4D); }
+.while-counter-lab .switch-choice.active { background: var(--mint); }
+.while-counter-screen { background: #111B1F; border: 2px solid #5B8990; border-radius: 13px; padding: 15px; min-height: 90px; }
+.while-counter-screen .screen-label { color: #9BC7CC; font: 11px 'JetBrains Mono', monospace; }
+.while-counter-screen strong { display: block; color: #FFD23F; font: 700 25px 'JetBrains Mono', monospace; margin-top: 5px; }
+.while-counter-screen p { color: #E5F9F6; font-size: 13px; margin: 4px 0 0; }
+.while-counter-progress { height: 11px; margin: 14px 0 2px; background: #102024; border: 2px solid #7AAAB0; border-radius: 8px; overflow: hidden; }
+.while-counter-progress span { display: block; width: 20%; height: 100%; background: linear-gradient(90deg, var(--mint), var(--lemon)); border-radius: 7px; transition: width .35s ease; }
+.while-counter-log { min-height: 24px; color: #B9E9EA; font-size: 12.5px; margin-top: 10px; }
+.while-counter-lab.flash .while-counter-screen { animation: while-screen-pop .35s ease; }
+
+.while-stop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+.while-stop-card { border: 2.5px solid var(--ink); border-radius: 16px; padding: 16px; box-shadow: 4px 4px 0 var(--shadow); }
+.while-stop-card.natural { background: #DFF6EC; }
+.while-stop-card.break { background: #FFE1EA; }
+.while-stop-card .stop-badge { display: inline-block; font: 12px 'JetBrains Mono', monospace; background: var(--ink); color: #fff; border-radius: 9px; padding: 3px 9px; }
+.while-stop-card h3 { font-family: 'Jua', sans-serif; font-size: 17px; margin: 10px 0 4px; }
+.while-stop-card p { font-size: 13px; margin: 0; }
+
+.while-infinite-panel { border: 3px dashed var(--ink); border-radius: 18px; padding: 18px; background: #FAF6EF; margin-top: 20px; }
+.while-infinite-track { display: flex; align-items: center; gap: 10px; overflow: hidden; padding: 8px 0 14px; }
+.while-infinite-dot { flex: none; width: 37px; height: 37px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--ink); border-radius: 50%; background: var(--coral); color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 12px; animation: while-dot-move 1.3s linear infinite; }
+.while-infinite-dot:nth-child(2) { animation-delay: .18s; }
+.while-infinite-dot:nth-child(3) { animation-delay: .36s; }
+.while-infinite-dot:nth-child(4) { animation-delay: .54s; }
+.while-infinite-dot:nth-child(5) { animation-delay: .72s; }
+.while-infinite-panel code { color: var(--coral-deep); }
+
+.monster-battle { background: linear-gradient(135deg, #241D30, #42243B); }
+.monster-battle .switch-choice.active { background: var(--coral); }
+.monster-status { display: grid; grid-template-columns: 68px 1fr; gap: 13px; align-items: center; background: #17121F; border: 2px solid #816078; border-radius: 14px; padding: 13px; }
+.monster-icon { width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border: 2px solid #fff; border-radius: 16px; background: #6B4FC7; font-size: 31px; }
+.monster-status strong { display: block; color: #fff; font-family: 'Jua', sans-serif; font-size: 16px; }
+.monster-hp-track { height: 13px; background: #2A1D31; border: 2px solid #B97C9B; border-radius: 8px; overflow: hidden; margin: 6px 0 3px; }
+.monster-hp-fill { width: 100%; height: 100%; background: linear-gradient(90deg, #FF6F91, #FFD23F); border-radius: 7px; transition: width .3s ease; }
+.monster-hp-label { color: #F4EFFF; font: 12px 'JetBrains Mono', monospace; }
+.monster-battle-log { min-height: 25px; color: #FFD2E0; font-size: 13px; margin: 13px 0 0; }
+.monster-battle.hit .monster-icon { animation: monster-hit .28s ease; }
+
+.while-mistake-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0; }
+.while-mistake { border: 2.5px solid var(--ink); border-radius: 15px; padding: 16px; }
+.while-mistake.wrong { background: #FFE3E9; }
+.while-mistake.right { background: #E3F7EC; }
+.while-mistake h3 { font-family: 'Jua', sans-serif; font-size: 16px; margin: 0 0 8px; }
+.while-mistake p { font-size: 13px; margin: 7px 0 0; }
+
+@keyframes while-arrow-pulse { 0%,100% { transform: translateX(0); opacity: .6; } 50% { transform: translateX(4px); opacity: 1; } }
+@keyframes while-screen-pop { 0% { transform: scale(.97); opacity: .6; } 100% { transform: scale(1); opacity: 1; } }
+@keyframes while-dot-move { 0% { transform: translateX(0) scale(.9); opacity: .45; } 50% { transform: translateX(6px) scale(1); opacity: 1; } 100% { transform: translateX(0) scale(.9); opacity: .45; } }
+@keyframes monster-hit { 0%,100% { transform: translateX(0) rotate(0); } 35% { transform: translateX(-7px) rotate(-5deg); } 70% { transform: translateX(7px) rotate(5deg); } }
+
+@media (max-width: 760px) {
+  .while-loop-map { grid-template-columns: 1fr; gap: 5px; }
+  .while-loop-arrow { transform: rotate(90deg); }
+  .while-syntax-grid, .while-stop-grid, .while-mistake-grid { grid-template-columns: 1fr; }
+  .while-infinite-track { overflow-x: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .while-loop-arrow, .while-infinite-dot, .monster-battle.hit .monster-icon { animation: none; }
+}
